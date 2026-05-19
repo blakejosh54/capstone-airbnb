@@ -12,7 +12,6 @@ const Login = () => {
 
   const [message, setMessage] = useState("");
 
-  // updates the form values
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -20,7 +19,6 @@ const Login = () => {
     });
   };
 
-  // logs the user in
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -47,7 +45,7 @@ const Login = () => {
       }
 
       setMessage("Login successful");
-      navigate("/accommodations");
+      navigate("/admin/listings");
     } catch (error) {
       console.log("Login error", error);
       setMessage("Something went wrong");

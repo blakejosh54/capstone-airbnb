@@ -317,7 +317,7 @@ const SearchBar = ({ variant = "hero" }) => {
           className="stay-search-button"
           onClick={handleNavbarSearch}
         >
-          🔍
+          <i className="material-icons">search</i>
         </button>
       </div>
     );
@@ -446,7 +446,7 @@ const SearchBar = ({ variant = "hero" }) => {
           className="stay-search-button"
           onClick={handleSearch}
         >
-          🔍
+          <i className="material-icons">search</i>
         </button>
       </div>
     );
@@ -585,7 +585,7 @@ const SearchBar = ({ variant = "hero" }) => {
         className="stay-search-button"
         onClick={handleSearch}
       >
-        🔍
+        <i className="material-icons">search</i>
       </button>
     </div>
   );

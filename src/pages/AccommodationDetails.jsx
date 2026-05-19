@@ -1,42 +1,53 @@
 import "../css/AccommodationDetails.css";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+  FaBaby,
+  FaBicycle,
+  FaFire,
+  FaLeaf,
+  FaPaw,
+  FaRegClock,
+  FaRegDotCircle,
+  FaSmokingBan,
+  FaWifi,
+} from "react-icons/fa";
 import superhostBadge from "../assets/superhost.svg";
 
 const staticReviews = [
   {
-    name: "Alice",
-    date: "March 2023",
+    name: "Alison",
+    date: "March 2026",
     text: "Amazing place, very clean and well-located.",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120",
   },
   {
-    name: "Bob",
-    date: "February 2023",
+    name: "Bobby",
+    date: "February 2025",
     text: "Great communication with the host and easy check-in process.",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120",
   },
   {
-    name: "Carol",
-    date: "January 2023",
+    name: "Caroline",
+    date: "January 2026",
     text: "The apartment was exactly as described. Highly recommend.",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120",
   },
   {
-    name: "Dave",
-    date: "December 2022",
+    name: "David",
+    date: "December 2025",
     text: "Fantastic stay. The location is perfect.",
     image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=120",
   },
   {
-    name: "Eve",
-    date: "November 2022",
+    name: "Candice",
+    date: "November 2025",
     text: "Very clean and spacious. Would definitely come back.",
     image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=120",
   },
   {
-    name: "Frank",
-    date: "October 2022",
+    name: "Frankie",
+    date: "October 2025",
     text: "Excellent value for the price. Loved the neighbourhood.",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120",
   },
@@ -46,13 +57,13 @@ const staticAmenities = [
   "Garden view",
   "Wifi",
   "Free washer - in building",
-  "Air conditioning",
+  "Central air conditioning",
   "Refrigerator",
   "Kitchen",
   "Pets allowed",
   "Dryer",
-  "Security cameras",
-  "Free parking",
+  "Security cameras on property",
+  "Bicycles",
 ];
 
 const bedroomImageUrl =
@@ -167,6 +178,50 @@ const AccommodationDetails = () => {
     const date = new Date(dateString);
 
     return date.getDate() === day;
+  };
+
+  const getAmenityIcon = (amenity) => {
+    if (amenity === "Garden view") {
+      return <FaLeaf />;
+    }
+
+    if (amenity === "Wifi") {
+      return <FaWifi />;
+    }
+
+    if (amenity === "Free washer - in building") {
+      return <FaRegDotCircle />;
+    }
+
+    if (amenity === "Central air conditioning") {
+      return <i className="material-icons">ac_unit</i>;
+    }
+
+    if (amenity === "Refrigerator") {
+      return <i className="material-icons">kitchen</i>;
+    }
+
+    if (amenity === "Kitchen") {
+      return <i className="material-icons">countertops</i>;
+    }
+
+    if (amenity === "Pets allowed") {
+      return <FaPaw />;
+    }
+
+    if (amenity === "Dryer") {
+      return <FaFire />;
+    }
+
+    if (amenity === "Security cameras on property") {
+      return <i className="material-icons">videocam</i>;
+    }
+
+    if (amenity === "Bicycles") {
+      return <FaBicycle />;
+    }
+
+    return <i className="material-icons">check</i>;
   };
 
   const todayDate = getTodayDateString();
@@ -335,7 +390,8 @@ const AccommodationDetails = () => {
             <p>
               {hasReviews ? (
                 <>
-                  ★ {rating} · {reviews} reviews · {accommodation.location}
+                  <i className="material-icons details-inline-icon">star</i>
+                  {rating} · {reviews} reviews · {accommodation.location}
                 </>
               ) : (
                 <>{accommodation.location}</>
@@ -344,8 +400,16 @@ const AccommodationDetails = () => {
           </div>
 
           <div className="details-actions">
-            <button type="button">↗ Share</button>
-            <button type="button">♡ Save</button>
+            <button type="button">
+              <i className="material-icons details-action-icon">ios_share</i>
+              <span>Share</span>
+            </button>
+            <button type="button">
+              <i className="material-icons details-action-icon">
+                favorite_border
+              </i>
+              <span>Save</span>
+            </button>
           </div>
         </section>
 
@@ -426,7 +490,9 @@ const AccommodationDetails = () => {
 
             <section className="details-section feature-list">
               <div className="feature-row">
-                <span className="feature-icon">⌂</span>
+                <span className="feature-icon">
+                  <i className="material-icons">home</i>
+                </span>
                 <div>
                   <h3>{accommodation.type}</h3>
                   <p>You’ll have the accommodation to yourself.</p>
@@ -435,7 +501,9 @@ const AccommodationDetails = () => {
 
               {accommodation.enhancedCleaning && (
                 <div className="feature-row">
-                  <span className="feature-icon">✣</span>
+                  <span className="feature-icon">
+                    <i className="material-icons">auto_awesome</i>
+                  </span>
                   <div>
                     <h3>Enhanced cleaning</h3>
                     <p>
@@ -447,7 +515,9 @@ const AccommodationDetails = () => {
 
               {accommodation.selfCheckIn && (
                 <div className="feature-row">
-                  <span className="feature-icon">⇱</span>
+                  <span className="feature-icon">
+                    <i className="material-icons">login</i>
+                  </span>
                   <div>
                     <h3>Self check-in</h3>
                     <p>Check yourself in when you arrive.</p>
@@ -456,7 +526,9 @@ const AccommodationDetails = () => {
               )}
 
               <div className="feature-row">
-                <span className="feature-icon">▣</span>
+                <span className="feature-icon">
+                  <i className="material-icons">event_available</i>
+                </span>
                 <div>
                   <h3>Free cancellation before your trip</h3>
                   <p>Cancel before your trip starts.</p>
@@ -486,7 +558,9 @@ const AccommodationDetails = () => {
                 {staticAmenities.map((amenity, index) => {
                   return (
                     <p key={index}>
-                      <span>◇</span>
+                      <span className="amenities-icon">
+                        {getAmenityIcon(amenity)}
+                      </span>
                       {amenity}
                     </p>
                   );
@@ -494,7 +568,7 @@ const AccommodationDetails = () => {
               </div>
 
               <button className="outline-button">
-                View all {staticAmenities.length} amenities
+                Show all {staticAmenities.length} amenities
               </button>
             </section>
 
@@ -599,7 +673,8 @@ const AccommodationDetails = () => {
             {hasReviews && (
               <section className="details-section reviews-section">
                 <h2>
-                  ★ {rating} · {reviews} reviews
+                  <i className="material-icons details-heading-icon">star</i>
+                  {rating} · {reviews} reviews
                 </h2>
 
                 <div className="rating-bars">
@@ -693,14 +768,27 @@ const AccommodationDetails = () => {
 
                 <div>
                   <h2>Hosted by {accommodation.host || "Host"}</h2>
-                  <p>Joined June 2024</p>
+                  <p>Joined June 2026</p>
                 </div>
               </div>
 
               <div className="host-badges">
-                <span>★ {reviews} Reviews</span>
-                <span>✓ Identity verified</span>
-                <span>🏅 Superhost</span>
+                <span>
+                  <i className="material-icons host-badge-icon">star</i>
+                  {reviews} Reviews
+                </span>
+                <span>
+                  <i className="material-icons host-badge-icon">
+                    verified_user
+                  </i>
+                  Identity verified
+                </span>
+                <span>
+                  <i className="material-icons host-badge-icon">
+                    workspace_premium
+                  </i>
+                  Superhost
+                </span>
               </div>
 
               <h3>{accommodation.host || "This host"} is a superhost</h3>
@@ -716,7 +804,8 @@ const AccommodationDetails = () => {
               <button className="outline-button">Contact Host</button>
 
               <p className="payment-warning">
-                🛡 To protect your payment, never transfer money or communicate
+                <i className="material-icons payment-warning-icon">security</i>
+                To protect your payment, never transfer money or communicate
                 outside of the Airbnb website or app.
               </p>
             </section>
@@ -731,7 +820,8 @@ const AccommodationDetails = () => {
 
                 {hasReviews ? (
                   <p>
-                    ★ {rating} · {reviews} reviews
+                    <i className="material-icons booking-star-icon">star</i>
+                    {rating} · {reviews} reviews
                   </p>
                 ) : (
                   <p className="new-listing-label">No reviews</p>
@@ -817,7 +907,8 @@ const AccommodationDetails = () => {
             </aside>
 
             <button type="button" className="report-listing-button">
-              ⚐ Report this listing
+              <i className="material-icons report-listing-icon">flag</i>
+              <span>Report this listing</span>
             </button>
           </div>
         </section>
@@ -827,31 +918,52 @@ const AccommodationDetails = () => {
             <h2>House Rules</h2>
 
             <p>
-              <span>•</span> Check-in: After 4:00 PM
+              <span className="rule-icon">
+                <FaRegClock />
+              </span>
+              Check-in: After 4:00 PM
             </p>
 
             <p>
-              <span>•</span> Check-out: 10:00 AM
+              <span className="rule-icon">
+                <FaRegClock />
+              </span>
+              Checkout: 10:00 AM
             </p>
 
             <p>
-              <span>•</span> Self check-in with lock-box
+              <span className="rule-icon">
+                <i className="material-icons">login</i>
+              </span>
+              Self check-in with lockbox
             </p>
 
             <p>
-              <span>•</span> Not suitable for infants under 2 years
+              <span className="rule-icon">
+                <FaBaby />
+              </span>
+              Not suitable for infants under 2 years
             </p>
 
             <p>
-              <span>•</span> No smoking
+              <span className="rule-icon">
+                <FaSmokingBan />
+              </span>
+              No smoking
             </p>
 
             <p>
-              <span>•</span> No pets
+              <span className="rule-icon">
+                <FaPaw />
+              </span>
+              No pets
             </p>
 
             <p>
-              <span>•</span> No parties or events
+              <span className="rule-icon">
+                <i className="material-icons">celebration</i>
+              </span>
+              No parties or events
             </p>
           </div>
 
@@ -859,38 +971,61 @@ const AccommodationDetails = () => {
             <h2>Health & Safety</h2>
 
             <p>
-              <span>•</span> Committed to Airbnb’s enhanced cleaning process.
+              <span className="rule-icon">
+                <i className="material-icons">auto_awesome</i>
+              </span>
+              Committed to Airbnb’s enhanced cleaning process.
             </p>
 
             <p>
-              <span>•</span> Airbnb’s social-distancing and other COVID-19
-              guidelines apply.
+              <span className="rule-icon">
+                <i className="material-icons">health_and_safety</i>
+              </span>
+              Airbnb’s social-distancing and other COVID-19 guidelines apply.
             </p>
 
             <p>
-              <span>•</span> Carbon monoxide alarm
+              <span className="rule-icon">
+                <i className="material-icons">sensors</i>
+              </span>
+              Carbon monoxide alarm
             </p>
 
             <p>
-              <span>•</span> Smoke alarm
+              <span className="rule-icon">
+                <i className="material-icons">radio_button_checked</i>
+              </span>
+              Smoke alarm
             </p>
 
             <p>
-              <span>•</span> Security Deposit - if you damage the home, you may
-              be charged.
+              <span className="rule-icon">
+                <i className="material-icons">credit_card</i>
+              </span>
+              Security Deposit - if you damage the home, you may be charged.
             </p>
 
-            <button className="text-button">Show more</button>
+            <button className="text-button">
+              <span>Show more</span>
+              <i className="material-icons text-button-icon">
+                keyboard_arrow_right
+              </i>
+            </button>
           </div>
 
           <div>
             <h2>Cancellation Policy</h2>
 
-            <p>
-              <span>•</span> Free cancellation before your trip starts.
+            <p className="rules-muted-text">
+              Free cancellation before your trip starts.
             </p>
 
-            <button className="text-button">Show more</button>
+            <button className="text-button">
+              <span>Show more</span>
+              <i className="material-icons text-button-icon">
+                keyboard_arrow_right
+              </i>
+            </button>
           </div>
         </section>
       </div>

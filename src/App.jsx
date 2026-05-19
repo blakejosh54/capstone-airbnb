@@ -17,7 +17,7 @@ const App = () => {
     const token = localStorage.getItem("token");
 
     if (token) {
-      return <Navigate to="/accommodations" />;
+      return <Navigate to="/admin/listings" />;
     }
 
     return children;

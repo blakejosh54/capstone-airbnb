@@ -81,7 +81,7 @@ const Navbar = () => {
         )}
 
         <button type="button" className="globe-button">
-          🌐
+          <i className="material-icons">language</i>
         </button>
 
         <div className="menu-wrapper" ref={menuRef}>
@@ -91,7 +91,9 @@ const Navbar = () => {
             onClick={() => setMenuOpen(!menuOpen)}
           >
             <span className="menu-lines">☰</span>
-            <span className="default-profile-icon">👤</span>
+            <span className="default-profile-icon">
+              <i className="material-icons">person</i>
+            </span>
           </button>
 
           {menuOpen && (

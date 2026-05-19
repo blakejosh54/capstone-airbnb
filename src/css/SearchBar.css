@@ -98,8 +98,13 @@
   color: white;
   display: grid;
   place-items: center;
+  justify-self: end;
   cursor: pointer;
   font-size: 20px;
+}
+
+.stay-search-button i {
+  transform: translateX(-2px);
 }
 
 .stay-search-bar.navbar-version .stay-search-button {
@@ -261,6 +266,7 @@
     width: 100%;
     height: 44px;
     border-radius: 12px;
+    justify-self: stretch;
   }
 
   .search-dropdown,

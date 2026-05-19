@@ -1,4 +1,5 @@
 import { useLocation } from "react-router-dom";
+import { FaTwitter, FaInstagram } from "react-icons/fa";
 import "../css/Footer.css";
 
 const Footer = () => {
@@ -63,7 +64,7 @@ const Footer = () => {
         </div>
 
         <div className="footer-settings">
-          <span>🌐</span>
+          <i className="material-icons footer-icon">language</i>
 
           <select>
             <option>English</option>
@@ -73,9 +74,9 @@ const Footer = () => {
             <option>ZAR</option>
           </select>
 
-          <span>f</span>
-          <span>♥</span>
-          <span>◎</span>
+          <i className="material-icons footer-icon">facebook</i>
+          <FaTwitter className="footer-react-icon" />
+          <FaInstagram className="footer-react-icon" />
         </div>
       </div>
     </footer>

@@ -49,6 +49,26 @@
 .details-header p {
   color: #444;
   font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.details-inline-icon {
+  color: #ff385c;
+  font-size: 16px;
+}
+
+.details-action-icon {
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.details-heading-icon {
+  color: #ff385c;
+  font-size: 22px;
+  margin-right: 6px;
+  vertical-align: -3px;
 }
 
 .details-actions {
@@ -63,9 +83,15 @@
   background-color: transparent;
   color: #222;
   font-size: 14px;
-  text-decoration: underline;
   cursor: pointer;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.details-actions button span {
+  text-decoration: underline;
 }
 
 .details-actions button:hover {
@@ -210,9 +236,12 @@
   align-items: center;
   justify-content: center;
   color: #222;
-  font-size: 16px;
   line-height: 1;
   margin-top: 1px;
+}
+
+.feature-icon i {
+  font-size: 22px;
 }
 
 .feature-row h3 {
@@ -261,16 +290,27 @@
 .amenities-grid p {
   display: flex;
   align-items: center;
-  gap: 12px;
-  color: #444;
-  font-size: 15px;
+  gap: 18px;
+  color: #222;
+  font-size: 16px;
 }
 
-.amenities-grid span {
+.amenities-icon {
+  width: 28px;
+  min-width: 28px;
   color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.amenities-icon svg {
   width: 20px;
-  display: inline-block;
-  text-align: center;
+  height: 20px;
+}
+
+.amenities-icon i {
+  font-size: 23px;
 }
 
 .outline-button {
@@ -315,6 +355,14 @@
 .booking-top p {
   color: #222;
   font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.booking-star-icon {
+  color: #ff385c;
+  font-size: 16px;
 }
 
 .new-listing-label {
@@ -414,15 +462,28 @@
   border: none;
   background-color: transparent;
   color: #222;
-  text-decoration: underline;
   cursor: pointer;
   font-size: 14px;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.report-listing-button span {
+  text-decoration: underline;
 }
 
 .report-listing-button:hover {
   color: #555;
 }
+
+.report-listing-icon {
+  font-size: 15px;
+  text-decoration: none;
+}
+
 .calendar-section h2 {
   margin-bottom: 10px;
 }
@@ -494,6 +555,8 @@
 
 .reviews-section h2 {
   margin-bottom: 24px;
+  display: flex;
+  align-items: center;
 }
 
 .rating-bars {
@@ -590,6 +653,17 @@
   font-size: 14px;
 }
 
+.host-badges span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.host-badge-icon {
+  color: #ff385c;
+  font-size: 17px;
+}
+
 .host-section h3 {
   margin-bottom: 12px;
 }
@@ -604,6 +678,14 @@
   margin-top: 22px;
   color: #777 !important;
   font-size: 14px;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.payment-warning-icon {
+  font-size: 18px;
+  color: #222;
 }
 
 .rules-section {
@@ -615,34 +697,71 @@
 }
 
 .rules-section h2 {
-  font-size: 20px;
-  margin-bottom: 16px;
+  font-size: 24px;
+  margin-bottom: 24px;
+  grid-column: 1 / -1;
+}
+
+.rules-section > div h2 {
+  font-size: 16px;
+  margin-bottom: 18px;
 }
 
 .rules-section p {
   display: grid;
-  grid-template-columns: 18px 1fr;
-  column-gap: 8px;
+  grid-template-columns: 24px 1fr;
+  column-gap: 12px;
   align-items: start;
-  color: #444;
-  margin-bottom: 10px;
+  color: #222;
+  margin-bottom: 14px;
   line-height: 1.4;
 }
 
-.rules-section p span {
-  display: inline-block;
+.rule-icon {
+  width: 24px;
+  min-height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #222;
-  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.rule-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.rule-icon i {
+  font-size: 19px;
+}
+
+.rules-muted-text {
+  color: #6b7280 !important;
+  display: block !important;
 }
 
 .text-button {
   border: none;
   background-color: transparent;
   color: #222;
-  text-decoration: underline;
   cursor: pointer;
   padding: 0;
   font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.text-button span {
+  text-decoration: underline;
+}
+
+.text-button-icon {
+  font-size: 18px;
+  text-decoration: none;
+  display: inline-flex;
 }
 
 @media (max-width: 1100px) {
