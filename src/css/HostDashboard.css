@@ -1,0 +1,372 @@
+.host-page {
+  padding: 40px 48px;
+  background-color: #f7f7f7;
+  min-height: calc(100vh - 82px);
+}
+
+.host-nav {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 60px;
+}
+
+.host-pill {
+  color: #222;
+  text-decoration: none;
+  border: 1px solid #cfcfcf;
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-size: 14px;
+  background-color: white;
+}
+
+.host-pill:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.host-title {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 28px;
+}
+
+.host-message {
+  text-align: center;
+  margin: 20px 0;
+  color: #555;
+}
+
+.host-empty-state {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: white;
+  border: 1px solid #eeeeee;
+  border-radius: 18px;
+  padding: 36px;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+}
+
+.host-empty-state h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.host-empty-state p {
+  margin-bottom: 22px;
+  color: #555;
+}
+
+.listing-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.host-listing-card {
+  display: grid;
+  grid-template-columns: 320px 1fr 220px;
+  gap: 60px;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 32px 80px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.host-listing-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+}
+
+.host-listing-left {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.host-listing-image {
+  width: 320px;
+  height: 210px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.host-update-button,
+.host-delete-button,
+.primary-button,
+.danger-button {
+  border: none;
+  color: white;
+  padding: 14px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.host-update-button,
+.primary-button {
+  background-color: #4353f4;
+}
+
+.host-update-button:hover,
+.primary-button:hover {
+  background-color: #3443d9;
+}
+
+.host-delete-button,
+.danger-button {
+  background-color: #e52e57;
+}
+
+.host-delete-button:hover,
+.danger-button:hover {
+  background-color: #c91f46;
+}
+
+.host-listing-info h2 {
+  font-size: 26px;
+  margin: 12px 0;
+}
+
+.host-listing-info p {
+  line-height: 1.5;
+}
+
+.listing-type-location {
+  color: #666;
+  font-size: 16px;
+}
+
+.small-divider {
+  width: 55px;
+  height: 1px;
+  background-color: #ddd;
+  margin: 22px 0;
+}
+
+.host-fees-preview {
+  color: #555;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.host-listing-price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.host-listing-price h3 {
+  font-size: 24px;
+}
+
+.listing-form {
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.form-left,
+.form-right {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.listing-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  font-size: 13px;
+  gap: 6px;
+}
+
+.listing-form input,
+.listing-form select,
+.listing-form textarea {
+  border: 2px solid #222;
+  border-radius: 4px;
+  padding: 11px;
+  font-size: 15px;
+}
+
+.listing-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.top-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.number-fields,
+.fee-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+}
+
+.checkbox-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.checkbox-row label {
+  flex-direction: row;
+  align-items: center;
+  font-size: 13px;
+}
+
+.inline-input {
+  display: flex;
+  gap: 10px;
+}
+
+.inline-input input {
+  flex: 1;
+}
+
+.inline-input button {
+  border: none;
+  border-radius: 4px;
+  padding: 0 20px;
+  background-color: #4353f4;
+  color: white;
+  cursor: pointer;
+}
+
+.tag-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tag {
+  border: none;
+  background-color: #eeeeee;
+  padding: 8px 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.image-upload-box {
+  border: 2px solid #222;
+  min-height: 110px;
+  border-radius: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  color: #888;
+}
+
+.image-upload-box button {
+  border: none;
+  background-color: #eeeeee;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.form-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 38px;
+  margin-top: 8px;
+}
+
+.reservation-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.reservation-table th,
+.reservation-table td {
+  border: 1px solid #ddd;
+  padding: 16px;
+  text-align: left;
+}
+
+.reservation-table th {
+  background-color: #f1f1f1;
+}
+
+.host-table-wrapper {
+  margin-top: 24px;
+  overflow-x: auto;
+}
+
+.host-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.host-table th,
+.host-table td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.host-table th {
+  background-color: #f7f7f7;
+  font-weight: 700;
+}
+
+.host-table small {
+  color: #717171;
+}
+
+@media (max-width: 900px) {
+  .host-page {
+    padding: 24px;
+  }
+
+  .host-nav {
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+
+  .host-listing-card {
+    grid-template-columns: 1fr;
+    padding: 24px;
+    gap: 24px;
+  }
+
+  .host-listing-image {
+    width: 100%;
+  }
+
+  .host-listing-price {
+    justify-content: flex-start;
+  }
+
+  .listing-form {
+    grid-template-columns: 1fr;
+  }
+
+  .number-fields,
+  .fee-fields {
+    grid-template-columns: 1fr;
+  }
+}

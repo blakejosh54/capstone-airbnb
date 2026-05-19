@@ -1,0 +1,454 @@
+.hero-section {
+  background-color: black;
+  padding: 0 42px 50px;
+}
+
+.hero-image {
+  min-height: 520px;
+  border-radius: 4px;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.35)),
+    url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 60px;
+  color: white;
+}
+
+.hero-image h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.hero-button {
+  background-color: white;
+  color: #222;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.home-section,
+.experiences-section {
+  padding: 60px 42px;
+  background-color: white;
+}
+
+.home-section h2,
+.experiences-section h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.inspiration-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.trip-card {
+  background-color: #ff385c;
+  color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.trip-image {
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+}
+
+.cape-town {
+  background-image: url("https://images.unsplash.com/photo-1580060839134-75a5edca2e99");
+}
+
+.stellenbosch {
+  background-image: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee");
+}
+
+.camps-bay {
+  background-image: url("https://images.unsplash.com/photo-1518684079-3c830dcef090");
+}
+
+.drakensberg {
+  background-image: url("https://images.unsplash.com/photo-1500534314209-a25ddb2bd429");
+}
+
+.new-york {
+  background-image: url("https://images.unsplash.com/photo-1485871981521-5b1fd3805eee");
+}
+
+.trip-content {
+  padding: 18px;
+}
+
+.trip-card h3 {
+  margin: 0 0 8px;
+  font-size: 22px;
+}
+
+.trip-card p {
+  margin: 0;
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.experience-card {
+  min-height: 560px;
+  border-radius: 12px;
+  padding: 58px;
+  color: white;
+  background-size: cover;
+  background-position: center;
+}
+
+.experience-trip {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.35)),
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee");
+}
+
+.experience-home {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.35)),
+    url("https://images.unsplash.com/photo-1556911220-bff31c812dba");
+}
+
+.experience-card h3 {
+  max-width: 360px;
+  font-size: 54px;
+  line-height: 1.05;
+  margin-top: 0;
+}
+
+.experience-card button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.gift-card-section {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 70px 42px 80px;
+  background-color: white;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 35px;
+  align-items: center;
+}
+
+.gift-card-section > div:first-child {
+  transform: translateX(-250px);
+}
+
+.gift-card-section h2 {
+  font-size: 34px;
+  margin: 0 0 24px;
+  line-height: 1.05;
+}
+
+.gift-card-section button {
+  border: none;
+  background-color: black;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.gift-card-section button:hover {
+  background-color: #222;
+  transform: translateY(-2px);
+}
+
+.gift-card-images {
+  min-height: 270px;
+  position: relative;
+}
+
+.gift-card {
+  width: 260px;
+  height: 150px;
+  border-radius: 18px;
+  position: absolute;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 18px 28px rgba(0, 0, 0, 0.14);
+  overflow: hidden;
+}
+
+.gift-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.gift-airbnb-logo {
+  width: 62px;
+  height: 62px;
+  color: white;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.gift-card-left {
+  left: 16%;
+  top: 48px;
+  transform: rotate(-5deg);
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.04), rgba(255, 56, 92, 0.06)),
+    url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c");
+  background-size: cover;
+  background-position: center;
+}
+
+.gift-card-center {
+  left: 39%;
+  top: 95px;
+  transform: rotate(-14deg);
+  background: linear-gradient(135deg, #ff385c, #ff3158);
+  z-index: 2;
+}
+
+.gift-card-right {
+  left: 60%;
+  top: 42px;
+  transform: rotate(12deg);
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.04), rgba(255, 56, 92, 0.06)),
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee");
+  background-size: cover;
+  background-position: center;
+}
+
+.hosting-section {
+  min-height: 560px;
+  margin: 40px 42px;
+  border-radius: 14px;
+  padding: 60px;
+  color: white;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.35)),
+    url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+}
+
+.hosting-section h2 {
+  max-width: 360px;
+  font-size: 54px;
+}
+
+.hosting-button {
+  display: inline-block;
+  background-color: white;
+  color: #222;
+  padding: 12px 22px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.future-getaways-section {
+  padding: 60px 42px 70px;
+  background-color: white;
+}
+
+.future-getaways-section h2 {
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+
+.getaway-tabs {
+  display: flex;
+  gap: 28px;
+  border-bottom: 1px solid #ddd;
+  overflow-x: auto;
+}
+
+.getaway-tabs button {
+  border: none;
+  background-color: transparent;
+  padding: 0 0 14px;
+  color: #222;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.getaway-tabs .active-tab {
+  color: #000;
+  border-bottom: 2px solid #ff385c;
+}
+
+.getaway-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px 90px;
+  margin-top: 30px;
+}
+
+.getaway-grid h3 {
+  font-size: 15px;
+  margin: 0 0 6px;
+}
+
+.getaway-grid p {
+  color: #555;
+  margin: 0;
+}
+
+.footer {
+  background-color: #f1f1f1;
+  padding: 40px 42px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.footer p {
+  color: #555;
+  margin: 8px 0;
+}
+
+@media (max-width: 1200px) {
+  .inspiration-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .trip-image {
+    height: 170px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-section {
+    padding: 0 20px 40px;
+  }
+
+  .hero-image {
+    min-height: 420px;
+    padding: 30px;
+  }
+
+  .inspiration-grid,
+  .experience-grid,
+  .footer {
+    grid-template-columns: 1fr;
+  }
+
+  .trip-image {
+    height: 220px;
+  }
+
+  .experience-card {
+    min-height: 460px;
+  }
+
+  .gift-card-section {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 50px 20px;
+  }
+
+  .gift-card-images {
+    min-height: 310px;
+  }
+
+  .gift-card-left {
+    left: 0;
+  }
+
+  .gift-card-center {
+    left: 25%;
+  }
+
+  .gift-card-right {
+    left: 48%;
+  }
+
+  .getaway-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-section,
+  .experiences-section,
+  .future-getaways-section {
+    padding: 40px 20px;
+  }
+
+  .experience-card {
+    min-height: 390px;
+    padding: 32px;
+  }
+
+  .experience-card h3 {
+    font-size: 38px;
+  }
+
+  .gift-card-images {
+    min-height: 520px;
+  }
+
+  .gift-card {
+    width: 230px;
+    height: 135px;
+  }
+
+  .gift-card-left,
+  .gift-card-center,
+  .gift-card-right {
+    left: 50%;
+  }
+
+  .gift-card-left {
+    top: 20px;
+    transform: translateX(-50%) rotate(-5deg);
+  }
+
+  .gift-card-center {
+    top: 185px;
+    transform: translateX(-50%) rotate(-8deg);
+  }
+
+  .gift-card-right {
+    top: 350px;
+    transform: translateX(-50%) rotate(8deg);
+  }
+
+  .hosting-section {
+    min-height: 460px;
+    margin: 30px 20px;
+    padding: 30px;
+  }
+
+  .hosting-section h2 {
+    font-size: 36px;
+  }
+
+  .getaway-grid {
+    grid-template-columns: 1fr;
+  }
+}
