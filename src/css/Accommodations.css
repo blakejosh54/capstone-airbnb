@@ -10,6 +10,69 @@
   font-size: 24px;
 }
 
+.accommodation-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.accommodation-filter-select {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.accommodation-filter-select::after {
+  content: "";
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-right: 1.6px solid #222;
+  border-bottom: 1.6px solid #222;
+  transform: translateY(-65%) rotate(45deg);
+  pointer-events: none;
+}
+
+.accommodation-filters select,
+.accommodation-filters button {
+  border: 1px solid #dddddd;
+  background-color: white;
+  color: #444;
+  border-radius: 999px;
+  padding: 9px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.accommodation-filters select {
+  min-width: 0;
+  outline: none;
+  padding: 9px 34px 9px 16px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.price-filter-select select {
+  width: 92px;
+}
+
+.type-filter-select select {
+  width: 158px;
+}
+
+.accommodation-filters button:hover,
+.accommodation-filters select:hover,
+.accommodation-filters .active-filter {
+  border-color: #222;
+  color: #222;
+}
+
 .accommodation-list {
   display: flex;
   flex-direction: column;

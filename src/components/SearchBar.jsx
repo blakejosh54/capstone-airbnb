@@ -10,6 +10,7 @@ const SearchBar = ({ variant = "hero" }) => {
 
   const [accommodations, setAccommodations] = useState([]);
   const [activeDropdown, setActiveDropdown] = useState("");
+  const [searchText, setSearchText] = useState("");
 
   const [selectedLocation, setSelectedLocation] = useState(
     searchParams.get("location") || "",
@@ -22,6 +23,9 @@ const SearchBar = ({ variant = "hero" }) => {
   );
 
   const guestCount = adults + children;
+  const isNavbarVersion = variant === "navbar-version";
+  const isDetailsSearchBar =
+    isNavbarVersion && /^\/accommodations\/[^/]+$/.test(location.pathname);
 
   const getTodayDateString = () => {
     const today = new Date();
@@ -36,10 +40,54 @@ const SearchBar = ({ variant = "hero" }) => {
       return getTodayDateString();
     }
 
-    const date = new Date(dateString);
+    const date = new Date(`${dateString}T00:00:00`);
     date.setDate(date.getDate() + 1);
 
     return date.toISOString().split("T")[0];
+  };
+
+  const formatDatePart = (dateString) => {
+    if (!dateString) {
+      return "";
+    }
+
+    const date = new Date(`${dateString}T00:00:00`);
+
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+    });
+  };
+
+  const formatStayDates = () => {
+    if (!checkIn && !checkOut) {
+      return "Add dates";
+    }
+
+    if (checkIn && !checkOut) {
+      return formatDatePart(checkIn);
+    }
+
+    if (!checkIn && checkOut) {
+      return formatDatePart(checkOut);
+    }
+
+    const checkInDate = new Date(`${checkIn}T00:00:00`);
+    const checkOutDate = new Date(`${checkOut}T00:00:00`);
+    const checkInMonth = checkInDate.toLocaleDateString("en-US", {
+      month: "short",
+    });
+    const checkOutMonth = checkOutDate.toLocaleDateString("en-US", {
+      month: "short",
+    });
+    const checkInDay = checkInDate.getDate();
+    const checkOutDay = checkOutDate.getDate();
+
+    if (checkInMonth === checkOutMonth) {
+      return `${checkInMonth} ${checkInDay} - ${checkOutDay}`;
+    }
+
+    return `${checkInMonth} ${checkInDay} - ${checkOutMonth} ${checkOutDay}`;
   };
 
   const todayDate = getTodayDateString();
@@ -60,6 +108,10 @@ const SearchBar = ({ variant = "hero" }) => {
         .filter((locationName) => locationName),
     ),
   ].sort();
+
+  const matchingLocations = locations.filter((locationName) =>
+    locationName.toLowerCase().startsWith(searchText.trim().toLowerCase()),
+  );
 
   const buildSearchUrl = (filters = {}) => {
     const nextLocation =
@@ -108,6 +160,31 @@ const SearchBar = ({ variant = "hero" }) => {
     setActiveDropdown("");
   };
 
+  const handleNavbarSearch = () => {
+    const cleanSearch = searchText.trim();
+
+    if (!cleanSearch) {
+      navigate("/locations");
+      setActiveDropdown("");
+      return;
+    }
+
+    navigate(`/locations?search=${encodeURIComponent(cleanSearch)}`);
+    setActiveDropdown("");
+  };
+
+  const handleNavbarLocationSelect = (locationName) => {
+    navigate(`/locations?location=${encodeURIComponent(locationName)}`);
+    setSearchText("");
+    setActiveDropdown("");
+  };
+
+  const handleNavbarKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleNavbarSearch();
+    }
+  };
+
   const handleLocationSelect = (locationName) => {
     setSelectedLocation(locationName);
     setActiveDropdown("");
@@ -118,7 +195,10 @@ const SearchBar = ({ variant = "hero" }) => {
 
     setCheckIn(value);
 
-    if (checkOut && new Date(checkOut) <= new Date(value)) {
+    if (
+      checkOut &&
+      new Date(`${checkOut}T00:00:00`) <= new Date(`${value}T00:00:00`)
+    ) {
       setCheckOut("");
     }
   };
@@ -192,6 +272,186 @@ const SearchBar = ({ variant = "hero" }) => {
     };
   }, []);
 
+  if (isDetailsSearchBar) {
+    return (
+      <div
+        className={`stay-search-bar ${variant} details-navbar-search`}
+        ref={searchBarRef}
+      >
+        <div className="navbar-location-search">
+          <input
+            type="text"
+            value={searchText}
+            placeholder="Start your search"
+            onChange={(event) => {
+              setSearchText(event.target.value);
+              setActiveDropdown("locationSearch");
+            }}
+            onFocus={() => setActiveDropdown("locationSearch")}
+            onKeyDown={handleNavbarKeyDown}
+          />
+
+          {activeDropdown === "locationSearch" && searchText.trim() && (
+            <div className="search-dropdown navbar-location-dropdown">
+              {matchingLocations.length === 0 ? (
+                <p>No locations</p>
+              ) : (
+                matchingLocations.map((locationName) => {
+                  return (
+                    <button
+                      type="button"
+                      key={locationName}
+                      onClick={() => handleNavbarLocationSelect(locationName)}
+                    >
+                      {locationName}
+                    </button>
+                  );
+                })
+              )}
+            </div>
+          )}
+        </div>
+
+        <button
+          type="button"
+          className="stay-search-button"
+          onClick={handleNavbarSearch}
+        >
+          🔍
+        </button>
+      </div>
+    );
+  }
+
+  if (isNavbarVersion) {
+    return (
+      <div className={`stay-search-bar ${variant}`} ref={searchBarRef}>
+        <div className="stay-search-item">
+          <button
+            type="button"
+            onClick={() =>
+              setActiveDropdown(activeDropdown === "location" ? "" : "location")
+            }
+          >
+            <small>{selectedLocation || "All locations"}</small>
+          </button>
+
+          {activeDropdown === "location" && (
+            <div className="search-dropdown location-dropdown">
+              <button type="button" onClick={() => handleLocationSelect("")}>
+                All locations
+              </button>
+
+              {locations.length === 0 ? (
+                <button type="button">No locations found</button>
+              ) : (
+                locations.map((locationName) => {
+                  return (
+                    <button
+                      type="button"
+                      key={locationName}
+                      onClick={() => handleLocationSelect(locationName)}
+                    >
+                      {locationName}
+                    </button>
+                  );
+                })
+              )}
+            </div>
+          )}
+        </div>
+
+        <div className="stay-search-item">
+          <button
+            type="button"
+            onClick={() =>
+              setActiveDropdown(activeDropdown === "dates" ? "" : "dates")
+            }
+          >
+            <small>{formatStayDates()}</small>
+          </button>
+
+          {activeDropdown === "dates" && (
+            <div className="search-dropdown date-dropdown navbar-date-dropdown">
+              <label>
+                Check in
+                <input
+                  type="date"
+                  min={todayDate}
+                  value={checkIn}
+                  onChange={handleCheckInChange}
+                />
+              </label>
+
+              <label>
+                Check out
+                <input
+                  type="date"
+                  min={minimumCheckOutDate}
+                  value={checkOut}
+                  onChange={handleCheckOutChange}
+                />
+              </label>
+            </div>
+          )}
+        </div>
+
+        <div className="stay-search-item">
+          <button
+            type="button"
+            onClick={() =>
+              setActiveDropdown(activeDropdown === "guests" ? "" : "guests")
+            }
+          >
+            <small>
+              {guestCount === 1 ? "1 guest" : `${guestCount} guests`}
+            </small>
+          </button>
+
+          {activeDropdown === "guests" && (
+            <div className="search-dropdown guests-dropdown">
+              <div className="guest-row">
+                <span>Adults</span>
+
+                <div>
+                  <button type="button" onClick={decreaseAdults}>
+                    -
+                  </button>
+                  <strong>{adults}</strong>
+                  <button type="button" onClick={increaseAdults}>
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <div className="guest-row">
+                <span>Children</span>
+
+                <div>
+                  <button type="button" onClick={decreaseChildren}>
+                    -
+                  </button>
+                  <strong>{children}</strong>
+                  <button type="button" onClick={increaseChildren}>
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <button
+          type="button"
+          className="stay-search-button"
+          onClick={handleSearch}
+        >
+          🔍
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className={`stay-search-bar ${variant}`} ref={searchBarRef}>
       <div className="stay-search-item">
@@ -202,11 +462,15 @@ const SearchBar = ({ variant = "hero" }) => {
           }
         >
           <span>Locations</span>
-          <small>{selectedLocation || "Select a Location"}</small>
+          <small>{selectedLocation || "All locations"}</small>
         </button>
 
         {activeDropdown === "location" && (
           <div className="search-dropdown location-dropdown">
+            <button type="button" onClick={() => handleLocationSelect("")}>
+              All locations
+            </button>
+
             {locations.length === 0 ? (
               <button type="button">No locations found</button>
             ) : (

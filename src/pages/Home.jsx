@@ -30,7 +30,7 @@ const Home = () => {
 
             <div className="trip-content">
               <h3>Cape Town</h3>
-              <p>South Africa</p>
+              <p>15 kilometers away</p>
             </div>
           </Link>
 
@@ -39,7 +39,7 @@ const Home = () => {
 
             <div className="trip-content">
               <h3>Stellenbosch</h3>
-              <p>South Africa</p>
+              <p>50 kilometers away</p>
             </div>
           </Link>
 
@@ -48,7 +48,7 @@ const Home = () => {
 
             <div className="trip-content">
               <h3>Camps Bay</h3>
-              <p>Cape Town</p>
+              <p>7 kilometers away</p>
             </div>
           </Link>
 
@@ -57,7 +57,7 @@ const Home = () => {
 
             <div className="trip-content">
               <h3>Drakensberg</h3>
-              <p>South Africa</p>
+              <p>1,200 kilometers away</p>
             </div>
           </Link>
 
@@ -66,7 +66,7 @@ const Home = () => {
 
             <div className="trip-content">
               <h3>New York</h3>
-              <p>United States</p>
+              <p>12,500 kilometers away</p>
             </div>
           </Link>
         </div>

@@ -20,7 +20,7 @@ function CreateListing() {
     description: "",
     enhancedCleaning: false,
     selfCheckIn: false,
-    amenities: [],
+    amenities: ["Wifi", "Kitchen", "Free parking"],
     amenityInput: "",
     images: [],
     imageInput: "",

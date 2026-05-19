@@ -1,0 +1,26 @@
+<svg width="379" height="486" viewBox="0 0 379 486" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="379" height="486" fill="none"/>
+  
+  <!-- Shield outer border -->
+  <path d="M74 13H304C319.464 13 332 25.536 332 41V195.5C332 203.985 328.158 212.015 321.558 217.331L206.558 309.943C196.329 318.182 181.671 318.182 171.442 309.943L56.442 217.331C49.8424 212.015 46 203.985 46 195.5V41C46 25.536 58.536 13 74 13Z" fill="black"/>
+
+  <!-- Shield inner white area -->
+  <path d="M83 25H295C305.493 25 314 33.5066 314 44V193.5C314 199.865 311.082 205.879 306.082 209.777L198.082 293.996C193.009 297.953 185.991 297.953 180.918 293.996L72.918 209.777C67.9178 205.879 65 199.865 65 193.5V44C65 33.5066 73.5066 25 84 25Z" fill="white"/>
+
+  <!-- Colored shield interior with white margin -->
+  <path d="M81 56L189.5 145L298 56V195L189.5 284L81 195V56Z" fill="white"/>
+  <path d="M81 56L189.5 145L298 56V195L189.5 284L81 195V56Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+  
+  <!-- Yellow right triangle -->
+  <path d="M189.5 145L298 56V195L189.5 145Z" fill="#F4C242"/>
+  <!-- Red large lower-left shape -->
+  <path d="M81 56L189.5 145L298 195L189.5 284L81 195V56Z" fill="#E62D55"/>
+  <!-- White top center triangle to keep center crisp -->
+  <path d="M81 56H298L189.5 145L81 56Z" fill="white"/>
+
+  <!-- Medal outer border -->
+  <circle cx="190" cy="387" r="69" fill="black"/>
+  <circle cx="190" cy="387" r="56" fill="white"/>
+  <!-- Yellow segment -->
+  <path d="M145.5 349.5C121.5 373 121.5 411 145.5 434.5C169.5 458 207.5 458 231.5 434.5L145.5 349.5Z" fill="#F4C242"/>
+</svg>

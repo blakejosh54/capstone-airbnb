@@ -15,7 +15,8 @@ const Navbar = () => {
   const isHomePage = location.pathname === "/";
   const showSearch =
     location.pathname === "/locations" ||
-    location.pathname === "/accommodations";
+    location.pathname === "/accommodations" ||
+    /^\/accommodations\/[^/]+$/.test(location.pathname);
 
   const handleLogout = () => {
     localStorage.removeItem("token");

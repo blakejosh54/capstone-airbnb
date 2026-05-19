@@ -2,13 +2,19 @@ import "../css/Accommodations.css";
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
+const defaultAmenities = ["Wifi", "Kitchen", "Free parking"];
+
 const Accommodations = () => {
   const [searchParams] = useSearchParams();
 
   const [accommodations, setAccommodations] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedPrice, setSelectedPrice] = useState("");
+  const [selectedType, setSelectedType] = useState("");
+  const [selectedAmenities, setSelectedAmenities] = useState([]);
 
   const selectedLocation = searchParams.get("location") || "";
+  const locationSearch = searchParams.get("search") || "";
   const adults = Number(searchParams.get("adults")) || 0;
   const children = Number(searchParams.get("children")) || 0;
   const guestCount = adults + children;
@@ -21,16 +27,80 @@ const Accommodations = () => {
     return location.split(",")[0].trim();
   };
 
+  const getAmenities = (amenities) => {
+    if (amenities?.length > 0) {
+      return amenities.join(" · ");
+    }
+
+    return defaultAmenities.join(" · ");
+  };
+
+  const getAmenityList = (amenities) => {
+    if (amenities?.length > 0) {
+      return amenities;
+    }
+
+    return defaultAmenities;
+  };
+
+  const toggleAmenity = (amenity) => {
+    if (selectedAmenities.includes(amenity)) {
+      setSelectedAmenities(
+        selectedAmenities.filter(
+          (selectedAmenity) => selectedAmenity !== amenity,
+        ),
+      );
+      return;
+    }
+
+    setSelectedAmenities([...selectedAmenities, amenity]);
+  };
+
   const filteredAccommodations = accommodations.filter((accommodation) => {
     const accommodationLocation = getLocationName(accommodation.location);
+    const accommodationAmenities = getAmenityList(accommodation.amenities).map(
+      (amenity) => amenity.toLowerCase(),
+    );
+
     const matchesLocation = selectedLocation
       ? accommodationLocation.toLowerCase() === selectedLocation.toLowerCase()
       : true;
+    const matchesSearch = locationSearch
+      ? accommodationLocation
+          .toLowerCase()
+          .startsWith(locationSearch.trim().toLowerCase())
+      : true;
     const matchesGuests =
       guestCount > 0 ? accommodation.guests >= guestCount : true;
+    const matchesPrice =
+      selectedPrice === "under-1000"
+        ? accommodation.price < 1000
+        : selectedPrice === "1000-1500"
+          ? accommodation.price >= 1000 && accommodation.price <= 1500
+          : selectedPrice === "over-1500"
+            ? accommodation.price > 1500
+            : true;
+    const matchesType = selectedType
+      ? accommodation.type.toLowerCase() === selectedType.toLowerCase()
+      : true;
+    const matchesAmenities =
+      selectedAmenities.length > 0
+        ? selectedAmenities.every((amenity) =>
+            accommodationAmenities.includes(amenity.toLowerCase()),
+          )
+        : true;
 
-    return matchesLocation && matchesGuests;
+    return (
+      matchesLocation &&
+      matchesSearch &&
+      matchesGuests &&
+      matchesPrice &&
+      matchesType &&
+      matchesAmenities
+    );
   });
+
+  const hasLocationFilter = selectedLocation || locationSearch;
 
   useEffect(() => {
     const getAccommodations = async () => {
@@ -58,13 +128,76 @@ const Accommodations = () => {
   return (
     <main className="accommodations-page">
       <h2>
-        {selectedLocation
-          ? `${filteredAccommodations.length} stays in ${selectedLocation}`
-          : `${filteredAccommodations.length} stays in all locations`}
+        {filteredAccommodations.length === 0 && hasLocationFilter
+          ? "No locations"
+          : selectedLocation
+            ? `${filteredAccommodations.length} stays in ${selectedLocation}`
+            : locationSearch
+              ? `${filteredAccommodations.length} stays matching ${locationSearch}`
+              : `${filteredAccommodations.length} stays in all locations`}
       </h2>
 
+      <div className="accommodation-filters">
+        <div className="accommodation-filter-select price-filter-select">
+          <select
+            value={selectedPrice}
+            onChange={(event) => setSelectedPrice(event.target.value)}
+          >
+            <option value="">Price</option>
+            <option value="under-1000">Under R1000</option>
+            <option value="1000-1500">R1000 - R1500</option>
+            <option value="over-1500">Over R1500</option>
+          </select>
+        </div>
+
+        <div className="accommodation-filter-select type-filter-select">
+          <select
+            value={selectedType}
+            onChange={(event) => setSelectedType(event.target.value)}
+          >
+            <option value="">Type of place</option>
+            <option value="Entire home">Entire home</option>
+            <option value="Private room">Private room</option>
+            <option value="Shared room">Shared room</option>
+            <option value="Hotel room">Hotel room</option>
+            <option value="Apartment">Apartment</option>
+            <option value="Cabin">Cabin</option>
+          </select>
+        </div>
+
+        <button
+          type="button"
+          className={selectedAmenities.includes("Wifi") ? "active-filter" : ""}
+          onClick={() => toggleAmenity("Wifi")}
+        >
+          Wifi
+        </button>
+
+        <button
+          type="button"
+          className={
+            selectedAmenities.includes("Kitchen") ? "active-filter" : ""
+          }
+          onClick={() => toggleAmenity("Kitchen")}
+        >
+          Kitchen
+        </button>
+
+        <button
+          type="button"
+          className={
+            selectedAmenities.includes("Air conditioning")
+              ? "active-filter"
+              : ""
+          }
+          onClick={() => toggleAmenity("Air conditioning")}
+        >
+          Air conditioning
+        </button>
+      </div>
+
       {filteredAccommodations.length === 0 ? (
-        <p>No accommodations found.</p>
+        <p>No locations</p>
       ) : (
         <div className="accommodation-list">
           {filteredAccommodations.map((accommodation) => (
@@ -97,7 +230,7 @@ const Accommodations = () => {
                   </p>
 
                   <p className="accommodation-details">
-                    Wifi · Kitchen · Free parking
+                    {getAmenities(accommodation.amenities)}
                   </p>
 
                   <p className="rating">

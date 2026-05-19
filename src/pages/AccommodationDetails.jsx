@@ -1,6 +1,7 @@
 import "../css/AccommodationDetails.css";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import superhostBadge from "../assets/superhost.svg";
 
 const staticReviews = [
   {
@@ -409,11 +410,18 @@ const AccommodationDetails = () => {
                 </p>
               </div>
 
-              <img
-                src={hostAvatarUrl}
-                alt="Host"
-                className="host-mini-avatar"
-              />
+              <div className="host-avatar-wrapper host-avatar-wrapper-small">
+                <img
+                  src={hostAvatarUrl}
+                  alt="Host"
+                  className="host-mini-avatar"
+                />
+                <img
+                  src={superhostBadge}
+                  alt="Superhost"
+                  className="host-superhost-badge"
+                />
+              </div>
             </section>
 
             <section className="details-section feature-list">
@@ -670,11 +678,18 @@ const AccommodationDetails = () => {
 
             <section className="details-section host-section">
               <div className="host-profile-row">
-                <img
-                  src={hostAvatarUrl}
-                  alt="Host"
-                  className="host-avatar-large"
-                />
+                <div className="host-avatar-wrapper host-avatar-wrapper-large">
+                  <img
+                    src={hostAvatarUrl}
+                    alt="Host"
+                    className="host-avatar-large"
+                  />
+                  <img
+                    src={superhostBadge}
+                    alt="Superhost"
+                    className="host-superhost-badge"
+                  />
+                </div>
 
                 <div>
                   <h2>Hosted by {accommodation.host || "Host"}</h2>
@@ -707,98 +722,104 @@ const AccommodationDetails = () => {
             </section>
           </div>
 
-          <aside className="booking-card">
-            <div className="booking-top">
-              <p>
-                <strong>R{price}</strong> / night
-              </p>
-
-              {hasReviews ? (
+          <div className="booking-sidebar">
+            <aside className="booking-card">
+              <div className="booking-top">
                 <p>
-                  ★ {rating} · {reviews} reviews
+                  <strong>R{price}</strong> / night
                 </p>
-              ) : (
-                <p className="new-listing-label">No reviews</p>
-              )}
-            </div>
 
-            <div className="booking-inputs">
-              <div>
-                <label>Check-in</label>
-                <input
-                  type="date"
-                  min={todayDate}
-                  value={checkIn}
-                  onChange={handleCheckInChange}
-                />
+                {hasReviews ? (
+                  <p>
+                    ★ {rating} · {reviews} reviews
+                  </p>
+                ) : (
+                  <p className="new-listing-label">No reviews</p>
+                )}
               </div>
 
-              <div>
-                <label>Check-out</label>
-                <input
-                  type="date"
-                  min={minimumCheckOutDate}
-                  value={checkOut}
-                  onChange={handleCheckOutChange}
-                />
+              <div className="booking-inputs">
+                <div>
+                  <label>Check-in</label>
+                  <input
+                    type="date"
+                    min={todayDate}
+                    value={checkIn}
+                    onChange={handleCheckInChange}
+                  />
+                </div>
+
+                <div>
+                  <label>Check-out</label>
+                  <input
+                    type="date"
+                    min={minimumCheckOutDate}
+                    value={checkOut}
+                    onChange={handleCheckOutChange}
+                  />
+                </div>
+
+                <div className="guest-input">
+                  <label>Guests</label>
+                  <input
+                    type="number"
+                    min="1"
+                    max={accommodation.guests}
+                    value={guests}
+                    onChange={handleGuestsChange}
+                  />
+                </div>
               </div>
 
-              <div className="guest-input">
-                <label>Guests</label>
-                <input
-                  type="number"
-                  min="1"
-                  max={accommodation.guests}
-                  value={guests}
-                  onChange={handleGuestsChange}
-                />
-              </div>
-            </div>
+              <button className="reserve-button" onClick={handleReserve}>
+                Reserve
+              </button>
 
-            <button className="reserve-button" onClick={handleReserve}>
-              Reserve
+              {message && <p className="booking-message">{message}</p>}
+
+              <p className="booking-note">You won’t be charged yet</p>
+
+              <div className="price-summary">
+                <p>
+                  <span>
+                    R{price} x {nights} nights
+                  </span>
+                  <span>R{nightlyTotal}</span>
+                </p>
+
+                <p>
+                  <span>Weekly discount</span>
+                  <span>-R{weeklyDiscount}</span>
+                </p>
+
+                <p>
+                  <span>Cleaning fee</span>
+                  <span>R{cleaningFee}</span>
+                </p>
+
+                <p>
+                  <span>Service fee</span>
+                  <span>R{serviceFee}</span>
+                </p>
+
+                <p>
+                  <span>Occupancy taxes and fees</span>
+                  <span>R{occupancyTaxes}</span>
+                </p>
+
+                <hr />
+
+                <p className="total-line">
+                  <span>Total</span>
+                  <span>R{totalPrice}</span>
+                </p>
+              </div>
+            </aside>
+
+            <button type="button" className="report-listing-button">
+              ⚐ Report this listing
             </button>
-
-            {message && <p className="booking-message">{message}</p>}
-
-            <p className="booking-note">You won’t be charged yet</p>
-
-            <div className="price-summary">
-              <p>
-                <span>
-                  R{price} x {nights} nights
-                </span>
-                <span>R{nightlyTotal}</span>
-              </p>
-
-              <p>
-                <span>Weekly discount</span>
-                <span>-R{weeklyDiscount}</span>
-              </p>
-
-              <p>
-                <span>Cleaning fee</span>
-                <span>R{cleaningFee}</span>
-              </p>
-
-              <p>
-                <span>Service fee</span>
-                <span>R{serviceFee}</span>
-              </p>
-
-              <p>
-                <span>Occupancy taxes and fees</span>
-                <span>R{occupancyTaxes}</span>
-              </p>
-
-              <hr />
-
-              <p className="total-line">
-                <span>Total</span>
-                <span>R{totalPrice}</span>
-              </p>
-            </div>
-          </aside>
+          </div>
         </section>
 
         <section className="rules-section">
