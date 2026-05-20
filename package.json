@@ -6,8 +6,6 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "heroku-postbuild": "npm install --prefix backend && npm run build",
-    "start": "npm start --prefix backend",
     "lint": "eslint .",
     "preview": "vite preview"
   },
