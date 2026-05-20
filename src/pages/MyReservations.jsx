@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/MyReservations.css";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 const MyReservations = () => {
   // stores the user reservations
   const [reservations, setReservations] = useState([]);
@@ -15,7 +17,7 @@ const MyReservations = () => {
 
       try {
         const response = await fetch(
-          "http://localhost:5000/api/reservations/my-reservations",
+          `${API_URL}/api/reservations/my-reservations`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -49,7 +51,7 @@ const MyReservations = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/reservations/${reservationId}/cancel`,
+        `${API_URL}/api/reservations/${reservationId}/cancel`,
         {
           method: "PUT",
           headers: {
@@ -120,6 +122,7 @@ const MyReservations = () => {
                       : "https://placehold.co/500x300?text=Reservation"
                   }
                   alt={reservation.accommodation?.title || "Accommodation"}
+                  loading="lazy"
                 />
 
                 <div className="reservation-info">
