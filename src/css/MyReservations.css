@@ -153,21 +153,151 @@
   background-color: black;
 }
 
+/* responsive css */
+@media (max-width: 1000px) {
+  .my-reservations-page {
+    padding: 38px 30px;
+  }
+
+  .reservation-card img {
+    width: 280px;
+  }
+
+  .reservation-info {
+    padding: 22px;
+  }
+
+  .reservation-info h2 {
+    font-size: 22px;
+  }
+}
+
 @media (max-width: 800px) {
   .my-reservations-page {
     padding: 32px 20px;
   }
 
+  .my-reservations-header h1 {
+    font-size: 30px;
+  }
+
   .reservation-card {
     flex-direction: column;
+    gap: 0;
   }
 
   .reservation-card img {
     width: 100%;
-    height: 240px;
+    height: 260px;
+    min-height: 0;
+  }
+
+  .reservation-details-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .my-reservations-page {
+    padding: 28px 16px;
+  }
+
+  .my-reservations-header {
+    margin-bottom: 24px;
+  }
+
+  .my-reservations-header h1 {
+    font-size: 27px;
+  }
+
+  .my-reservations-header p {
+    font-size: 15px;
+  }
+
+  .reservation-list {
+    gap: 20px;
+  }
+
+  .reservation-card {
+    border-radius: 16px;
+  }
+
+  .reservation-card img {
+    height: 230px;
+  }
+
+  .reservation-info {
+    padding: 20px;
+  }
+
+  .reservation-info h2 {
+    font-size: 21px;
   }
 
   .reservation-details-grid {
     grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .cancel-reservation-button {
+    width: 100%;
+  }
+
+  .empty-reservations {
+    padding: 28px 22px;
+    border-radius: 16px;
+  }
+
+  .empty-reservations h2 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 420px) {
+  .my-reservations-page {
+    padding: 24px 12px;
+  }
+
+  .my-reservations-header h1 {
+    font-size: 24px;
+  }
+
+  .reservation-message {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .reservation-card {
+    border-radius: 14px;
+  }
+
+  .reservation-card img {
+    height: 200px;
+  }
+
+  .reservation-info {
+    padding: 16px;
+  }
+
+  .reservation-info h2 {
+    font-size: 20px;
+  }
+
+  .reservation-location,
+  .reservation-detail {
+    font-size: 14px;
+  }
+
+  .reservation-status {
+    font-size: 13px;
+  }
+
+  .empty-reservations {
+    padding: 24px 18px;
+  }
+
+  .empty-reservations a {
+    width: 100%;
+    text-align: center;
   }
 }

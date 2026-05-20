@@ -120,7 +120,7 @@
 .accommodation-type,
 .accommodation-details,
 .rating {
-  color: #666;
+  color: #717171;
 }
 
 .small-line {
@@ -147,19 +147,188 @@
   font-size: 26px;
 }
 
+/* responsive css */
+
+@media (max-width: 1100px) {
+  .accommodations-page {
+    max-width: 960px;
+    padding: 28px 24px;
+  }
+
+  .accommodation-card {
+    grid-template-columns: 170px 1fr 140px;
+    gap: 18px;
+  }
+
+  .accommodation-card-image {
+    width: 170px;
+    height: 135px;
+  }
+
+  .accommodation-card-info h3 {
+    font-size: 24px;
+  }
+
+  .accommodation-card-price strong {
+    font-size: 24px;
+  }
+}
+
 @media (max-width: 900px) {
+  .accommodations-page {
+    padding: 26px 22px;
+  }
+
+  .accommodation-filters {
+    justify-content: center;
+  }
+
   .accommodation-card {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .accommodation-card-image {
     width: 100%;
-    height: 220px;
+    height: 260px;
   }
 
   .accommodation-card-price {
     text-align: left;
     justify-content: flex-start;
     padding-bottom: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .accommodations-page {
+    padding: 24px 18px;
+  }
+
+  .accommodations-page h2 {
+    font-size: 22px;
+    margin-bottom: 24px;
+  }
+
+  .accommodation-filters {
+    gap: 9px;
+    margin-bottom: 24px;
+  }
+
+  .accommodation-filters select,
+  .accommodation-filters button {
+    font-size: 13px;
+    padding: 9px 13px;
+  }
+
+  .accommodation-filters select {
+    padding: 9px 32px 9px 14px;
+  }
+
+  .price-filter-select select {
+    width: 88px;
+  }
+
+  .type-filter-select select {
+    width: 150px;
+  }
+
+  .accommodation-list {
+    gap: 20px;
+  }
+
+  .accommodation-card {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .accommodation-card-image {
+    height: 230px;
+    border-radius: 12px;
+  }
+
+  .accommodation-card-info h3 {
+    font-size: 22px;
+  }
+
+  .accommodation-card-price strong {
+    font-size: 23px;
+  }
+}
+
+@media (max-width: 520px) {
+  .accommodations-page {
+    padding: 22px 14px;
+  }
+
+  .accommodation-filters {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+  }
+
+  .accommodation-filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .accommodation-filter-select,
+  .accommodation-filters button {
+    flex: 0 0 auto;
+  }
+
+  .accommodation-card {
+    padding: 14px;
+    gap: 14px;
+  }
+
+  .accommodation-card:hover {
+    transform: none;
+  }
+
+  .accommodation-card-image {
+    height: 210px;
+  }
+
+  .accommodation-card-info h3 {
+    font-size: 21px;
+  }
+
+  .accommodation-type,
+  .accommodation-details,
+  .rating {
+    font-size: 14px;
+  }
+
+  .small-line {
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .accommodations-page {
+    padding: 20px 12px;
+  }
+
+  .accommodations-page h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .accommodation-card {
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .accommodation-card-image {
+    height: 190px;
+  }
+
+  .accommodation-card-info h3 {
+    font-size: 20px;
+  }
+
+  .accommodation-card-price strong {
+    font-size: 22px;
   }
 }

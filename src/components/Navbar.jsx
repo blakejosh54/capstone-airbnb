@@ -13,6 +13,8 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const isHomePage = location.pathname === "/";
+  const isAuthPage =
+    location.pathname === "/login" || location.pathname === "/register";
   const showSearch =
     location.pathname === "/locations" ||
     location.pathname === "/accommodations" ||
@@ -52,24 +54,28 @@ const Navbar = () => {
 
   return (
     <header
-      className={isHomePage ? "navbar navbar-dark" : "navbar navbar-light"}
+      className={`${isHomePage ? "navbar navbar-dark" : "navbar navbar-light"} ${
+        isAuthPage ? "navbar-auth" : ""
+      }`}
     >
       <Link to="/" className="navbar-logo">
         <img src={logo} alt="" className="navbar-logo-image" />
         <span className="navbar-logo-text">airbnb</span>
       </Link>
 
-      <nav className="navbar-center">
-        {showSearch ? (
-          <SearchBar variant="navbar-version" />
-        ) : (
-          <>
-            <Link to="/accommodations">Places to stay</Link>
-            <a href="#">Experiences</a>
-            <a href="#">Online Experiences</a>
-          </>
-        )}
-      </nav>
+      {!isAuthPage && (
+        <nav className="navbar-center">
+          {showSearch ? (
+            <SearchBar variant="navbar-version" />
+          ) : (
+            <>
+              <Link to="/accommodations">Places to stay</Link>
+              <a href="#">Experiences</a>
+              <a href="#">Online Experiences</a>
+            </>
+          )}
+        </nav>
+      )}
 
       <div className="navbar-right">
         {currentUser ? (
@@ -100,6 +106,10 @@ const Navbar = () => {
             <div className="navbar-dropdown">
               {currentUser ? (
                 <>
+                  <Link to="/admin/listings" onClick={() => setMenuOpen(false)}>
+                    Admin Dashboard
+                  </Link>
+
                   <Link
                     to="/my-reservations"
                     onClick={() => setMenuOpen(false)}

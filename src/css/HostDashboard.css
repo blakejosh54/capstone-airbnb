@@ -336,37 +336,283 @@
   color: #717171;
 }
 
-@media (max-width: 900px) {
-  .host-page {
-    padding: 24px;
-  }
+/* responsive css */
 
-  .host-nav {
-    flex-wrap: wrap;
-    gap: 14px;
-    margin-bottom: 36px;
+@media (max-width: 1200px) {
+  .host-page {
+    padding: 34px 32px;
   }
 
   .host-listing-card {
-    grid-template-columns: 1fr;
-    padding: 24px;
-    gap: 24px;
+    grid-template-columns: 280px 1fr 180px;
+    gap: 34px;
+    padding: 28px 36px;
   }
 
   .host-listing-image {
-    width: 100%;
+    width: 280px;
+    height: 190px;
+  }
+
+  .listing-form {
+    gap: 42px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .host-page {
+    padding: 30px 26px;
+  }
+
+  .host-nav {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 42px;
+  }
+
+  .host-title {
+    margin-bottom: 38px;
+  }
+
+  .host-listing-card {
+    grid-template-columns: 250px 1fr;
+    gap: 28px;
+    padding: 26px;
+  }
+
+  .host-listing-left {
+    grid-row: 1 / span 2;
+  }
+
+  .host-listing-image {
+    width: 250px;
+    height: 180px;
   }
 
   .host-listing-price {
     justify-content: flex-start;
   }
 
+  .host-listing-price h3 {
+    font-size: 22px;
+  }
+
   .listing-form {
     grid-template-columns: 1fr;
+    gap: 28px;
+    max-width: 720px;
+  }
+}
+
+@media (max-width: 800px) {
+  .host-page {
+    padding: 26px 20px;
+  }
+
+  .host-nav {
+    margin-bottom: 34px;
+  }
+
+  .host-pill {
+    padding: 11px 16px;
+  }
+
+  .host-title {
+    font-size: 26px;
+    margin-bottom: 30px;
+  }
+
+  .host-empty-state {
+    padding: 30px 24px;
+  }
+
+  .host-listing-card {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 22px;
+    border-radius: 16px;
+  }
+
+  .host-listing-left {
+    grid-row: auto;
+  }
+
+  .host-listing-image {
+    width: 100%;
+    height: 260px;
+    border-radius: 12px;
+  }
+
+  .host-listing-info h2 {
+    font-size: 24px;
+  }
+
+  .small-divider {
+    margin: 18px 0;
   }
 
   .number-fields,
   .fee-fields {
     grid-template-columns: 1fr;
+  }
+
+  .checkbox-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .form-buttons {
+    gap: 18px;
+  }
+
+  .host-table {
+    min-width: 720px;
+  }
+
+  .reservation-table {
+    min-width: 720px;
+  }
+}
+
+@media (max-width: 600px) {
+  .host-page {
+    padding: 24px 16px;
+  }
+
+  .host-nav {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 10px;
+    margin-bottom: 28px;
+    padding-bottom: 4px;
+  }
+
+  .host-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .host-pill {
+    flex: 0 0 auto;
+    font-size: 13px;
+    padding: 10px 14px;
+  }
+
+  .host-title {
+    font-size: 24px;
+    margin-bottom: 26px;
+  }
+
+  .host-empty-state {
+    padding: 26px 20px;
+    border-radius: 14px;
+  }
+
+  .host-empty-state h2 {
+    font-size: 22px;
+  }
+
+  .listing-list {
+    gap: 22px;
+  }
+
+  .host-listing-card {
+    padding: 18px;
+  }
+
+  .host-listing-card:hover {
+    transform: none;
+  }
+
+  .host-listing-image {
+    height: 220px;
+  }
+
+  .host-update-button,
+  .host-delete-button,
+  .primary-button,
+  .danger-button {
+    padding: 13px 18px;
+  }
+
+  .host-listing-info h2 {
+    font-size: 22px;
+  }
+
+  .listing-type-location {
+    font-size: 14px;
+  }
+
+  .host-listing-info p {
+    font-size: 14px;
+  }
+
+  .host-listing-price h3 {
+    font-size: 21px;
+  }
+
+  .top-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .inline-input {
+    flex-direction: column;
+  }
+
+  .inline-input button {
+    padding: 12px;
+  }
+
+  .form-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .listing-form input,
+  .listing-form select,
+  .listing-form textarea {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 420px) {
+  .host-page {
+    padding: 22px 12px;
+  }
+
+  .host-title {
+    font-size: 22px;
+  }
+
+  .host-empty-state {
+    padding: 22px 16px;
+  }
+
+  .host-empty-state h2 {
+    font-size: 20px;
+  }
+
+  .host-listing-card {
+    padding: 14px;
+  }
+
+  .host-listing-image {
+    height: 190px;
+  }
+
+  .host-listing-info h2 {
+    font-size: 20px;
+  }
+
+  .host-listing-price h3 {
+    font-size: 20px;
+  }
+
+  .small-divider {
+    margin: 14px 0;
+  }
+
+  .image-upload-box {
+    padding: 12px;
   }
 }

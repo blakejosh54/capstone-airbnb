@@ -251,7 +251,7 @@
 }
 
 .feature-row p {
-  color: #666;
+  color: #717171;
   font-size: 14px;
   line-height: 1.45;
   margin: 0;
@@ -482,6 +482,10 @@
 .report-listing-icon {
   font-size: 15px;
   text-decoration: none;
+}
+
+.mobile-booking-wrapper {
+  display: none;
 }
 
 .calendar-section h2 {
@@ -764,78 +768,357 @@
   display: inline-flex;
 }
 
-@media (max-width: 1100px) {
+/* responsive css */
+@media (max-width: 1200px) {
   .details-container {
-    padding: 24px 32px 0;
-  }
-
-  .image-gallery {
-    height: 360px;
-  }
-
-  .image-gallery > .main-gallery-image {
-    height: 360px;
-  }
-
-  .image-gallery > .side-gallery {
-    height: 360px;
-    grid-template-rows: 176px 176px;
-  }
-
-  .image-gallery > .side-gallery > img {
-    height: 176px;
+    padding: 24px 36px 0;
   }
 
   .details-layout {
     grid-template-columns: minmax(0, 1fr) 340px;
-    gap: 32px;
+    gap: 36px;
+  }
+
+  .image-gallery {
+    height: 370px;
+  }
+
+  .image-gallery > .main-gallery-image {
+    height: 370px;
+  }
+
+  .image-gallery > .side-gallery {
+    height: 370px;
+    grid-template-rows: 181px 181px;
+  }
+
+  .image-gallery > .side-gallery > img {
+    height: 181px;
+  }
+
+  .amenities-grid {
+    gap: 18px 36px;
+  }
+
+  .rules-section {
+    gap: 44px;
   }
 }
 
-@media (max-width: 950px) {
+@media (max-width: 1000px) {
   .details-container {
-    padding: 24px 20px 0;
+    padding: 24px 28px 0;
+  }
+
+  .details-layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .desktop-booking-wrapper {
+    display: none;
+  }
+
+  .mobile-booking-wrapper {
+    display: block;
+    padding: 32px 0;
+    border-bottom: 1px solid #dddddd;
+  }
+
+  .mobile-booking-wrapper .booking-sidebar {
+    position: static;
+    max-width: 520px;
+  }
+
+  .calendar-preview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .calendar-box {
+    width: 100%;
+  }
+
+  .rating-bars,
+  .review-grid {
+    gap: 18px 36px;
+  }
+
+  .rules-section {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 44px;
+  }
+
+  .rules-section > div:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 800px) {
+  .details-container {
+    padding: 22px 20px 0;
   }
 
   .details-header {
     grid-template-columns: 1fr;
     align-items: start;
+    gap: 14px;
   }
 
-  .details-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .booking-sidebar {
-    position: static;
+  .details-actions {
+    justify-content: flex-start;
   }
 
   .image-gallery {
     grid-template-columns: 1fr;
     height: auto;
+    border-radius: 12px;
   }
 
   .image-gallery > .main-gallery-image {
-    height: 320px;
+    height: 330px;
   }
 
-  .side-gallery {
+  .image-gallery > .side-gallery {
     display: none;
   }
 
+  .intro-section {
+    gap: 18px;
+    align-items: flex-start;
+  }
+
+  .amenities-grid,
   .calendar-preview-grid,
-  .review-grid,
   .rating-bars,
-  .rules-section,
-  .amenities-grid {
+  .review-grid,
+  .rules-section {
     grid-template-columns: 1fr;
   }
 
-  .calendar-preview-grid {
+  .review-grid {
+    gap: 18px;
+  }
+
+  .review-card {
+    border: 1px solid #dddddd;
+    border-radius: 14px;
+    padding: 18px;
+    background-color: white;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+  }
+
+  .review-card p {
+    margin: 0;
+  }
+
+  .review-person {
+    margin-bottom: 16px;
+  }
+
+  .review-person img {
+    width: 54px;
+    height: 54px;
+  }
+
+  .review-person h3 {
+    font-size: 16px;
+  }
+
+  .review-person p {
+    font-size: 13px;
+  }
+
+  .rules-section > div:last-child {
+    grid-column: auto;
+  }
+
+  .rating-bars > div {
+    grid-template-columns: 110px 1fr 34px;
+  }
+}
+
+@media (max-width: 600px) {
+  .details-container {
+    padding: 20px 16px 0;
+  }
+
+  .details-header h1 {
+    font-size: 23px;
+  }
+
+  .details-header p {
+    align-items: flex-start;
+    line-height: 1.45;
+  }
+
+  .image-gallery > .main-gallery-image {
+    height: 280px;
+  }
+
+  .details-section {
+    padding: 28px 0;
+  }
+
+  .details-section h2 {
+    font-size: 20px;
+  }
+
+  .intro-section {
     flex-direction: column;
   }
 
-  .calendar-box {
+  .sleep-card {
     width: 100%;
+  }
+
+  .sleep-card img {
+    height: 210px;
+  }
+
+  .booking-card {
+    padding: 20px;
+  }
+
+  .booking-top {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .calendar-preview-grid {
+    gap: 14px;
+  }
+
+  .reviews-section h2 {
+    margin-bottom: 18px;
+  }
+
+  .rating-bars {
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .review-card {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .review-card p {
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .review-person {
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .review-person img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .host-profile-row {
+    align-items: flex-start;
+  }
+
+  .host-badges {
+    gap: 14px 20px;
+  }
+
+  .rules-section {
+    padding: 32px 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .details-container {
+    padding: 18px 12px 0;
+  }
+
+  .details-header h1 {
+    font-size: 21px;
+  }
+
+  .details-actions {
+    gap: 14px;
+  }
+
+  .image-gallery > .main-gallery-image {
+    height: 240px;
+  }
+
+  .details-section {
+    padding: 24px 0;
+  }
+
+  .feature-row {
+    column-gap: 14px;
+  }
+
+  .amenities-grid p {
+    gap: 14px;
+    font-size: 15px;
+  }
+
+  .outline-button,
+  .reserve-button {
+    width: 100%;
+  }
+
+  .booking-card {
+    padding: 18px;
+  }
+
+  .price-summary p {
+    gap: 14px;
+    font-size: 14px;
+  }
+
+  .calendar-box {
+    padding: 10px;
+  }
+
+  .calendar-days span {
+    min-height: 26px;
+  }
+
+  .rating-bars > div {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .review-grid {
+    gap: 14px;
+  }
+
+  .review-card {
+    padding: 14px;
+  }
+
+  .review-person {
+    align-items: center;
+  }
+
+  .review-person img {
+    width: 46px;
+    height: 46px;
+  }
+
+  .review-person h3 {
+    font-size: 15px;
+  }
+
+  .review-card p {
+    font-size: 14px;
+  }
+
+  .host-profile-row {
+    flex-direction: column;
+  }
+
+  .payment-warning {
+    line-height: 1.45;
   }
 }

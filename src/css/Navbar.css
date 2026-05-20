@@ -16,7 +16,6 @@
 .navbar-light {
   background-color: white;
   color: #222;
-  border-bottom: 1px solid #eee;
 }
 
 .navbar-logo {
@@ -69,6 +68,10 @@
   align-items: center;
   gap: 18px;
   justify-self: end;
+}
+
+.navbar-auth .navbar-right {
+  grid-column: 3;
 }
 
 .navbar-right a {
@@ -161,25 +164,148 @@
   background-color: #f7f7f7;
 }
 
-@media (max-width: 1000px) {
+/* responsive css */
+@media (max-width: 1100px) {
   .navbar {
-    height: auto;
-    grid-template-columns: 1fr;
-    gap: 18px;
-    padding: 20px;
-  }
-
-  .navbar-logo,
-  .navbar-center,
-  .navbar-right {
-    justify-self: start;
+    padding: 0 24px;
   }
 
   .navbar-center {
-    order: 3;
+    gap: 22px;
   }
 
   .navbar-right {
-    justify-content: flex-start;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 980px) {
+  .navbar-right > a {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .navbar {
+    min-height: auto;
+    padding: 18px 20px;
+    grid-template-columns: 1fr auto;
+    row-gap: 18px;
+  }
+
+  .navbar-logo {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .navbar-right,
+  .navbar-auth .navbar-right {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .navbar-center {
+    width: 100%;
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .navbar {
+    padding: 16px;
+  }
+
+  .navbar-logo {
+    font-size: 23px;
+  }
+
+  .navbar-logo-image {
+    height: 26px;
+    width: 26px;
+  }
+
+  .navbar-right {
+    gap: 10px;
+  }
+
+  .globe-button {
+    display: none;
+  }
+
+  .navbar-center {
+    gap: 16px;
+  }
+
+  .navbar-center a {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 520px) {
+  .navbar {
+    padding: 14px;
+  }
+
+  .navbar-logo {
+    font-size: 22px;
+  }
+
+  .navbar-logo-image {
+    height: 25px;
+    width: 25px;
+  }
+
+  .navbar-center {
+    justify-content: center;
+    gap: 14px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+
+  .navbar-center::-webkit-scrollbar {
+    display: none;
+  }
+
+  .navbar-center a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .menu-button {
+    padding: 6px 9px;
+    gap: 7px;
+  }
+
+  .navbar-dropdown {
+    right: 0;
+    width: 180px;
+  }
+}
+
+@media (max-width: 380px) {
+  .navbar {
+    padding: 12px;
+  }
+
+  .navbar-logo-text {
+    display: none;
+  }
+
+  .navbar-logo-image {
+    height: 28px;
+    width: 28px;
+  }
+
+  .navbar-center {
+    gap: 12px;
+  }
+
+  .navbar-center a {
+    font-size: 12px;
   }
 }

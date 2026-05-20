@@ -5,7 +5,10 @@ import "../css/Footer.css";
 const Footer = () => {
   const location = useLocation();
 
-  const hideFooter = location.pathname.startsWith("/admin");
+  const hideFooter =
+    location.pathname.startsWith("/admin") ||
+    location.pathname === "/login" ||
+    location.pathname === "/register";
 
   if (hideFooter) {
     return null;
@@ -28,7 +31,7 @@ const Footer = () => {
           <h3>Community</h3>
           <p>Airbnb.org: disaster relief housing</p>
           <p>Support Afghan refugees</p>
-          <p>Combating discrimination</p>
+          <p>Combatting discrimination</p>
           <p>Join the LGBTQ+ community</p>
           <p>Guest Referrals</p>
           <p>Gift cards</p>

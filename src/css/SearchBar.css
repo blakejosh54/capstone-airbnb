@@ -252,6 +252,10 @@
     padding: 16px;
   }
 
+  .stay-search-bar.details-navbar-search .navbar-location-search input {
+    text-align: center;
+  }
+
   .stay-search-item {
     border-bottom: 1px solid #eee;
     padding-bottom: 8px;

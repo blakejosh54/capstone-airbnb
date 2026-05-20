@@ -330,13 +330,59 @@
   margin: 8px 0;
 }
 
-@media (max-width: 1200px) {
+/* responsive css */
+@media (max-width: 1450px) {
+  .gift-card-section > div:first-child {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 1250px) {
+  .gift-card-section {
+    max-width: none;
+    margin: 0 42px;
+    grid-template-columns: 220px 1fr;
+  }
+
+  .gift-card-left {
+    left: 8%;
+  }
+
+  .gift-card-center {
+    left: 35%;
+  }
+
+  .gift-card-right {
+    left: 58%;
+  }
+}
+
+@media (max-width: 1100px) {
   .inspiration-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 
   .trip-image {
     height: 170px;
+  }
+
+  .experience-card {
+    min-height: 500px;
+    padding: 44px;
+  }
+
+  .experience-card h3 {
+    font-size: 46px;
+  }
+
+  .gift-card {
+    width: 230px;
+    height: 135px;
+  }
+
+  .getaway-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px 50px;
   }
 }
 
@@ -350,45 +396,153 @@
     padding: 30px;
   }
 
-  .inspiration-grid,
-  .experience-grid,
-  .footer {
-    grid-template-columns: 1fr;
+  .hero-image h1 {
+    font-size: 32px;
+    text-align: center;
+  }
+
+  .home-section,
+  .experiences-section {
+    padding: 50px 24px;
+  }
+
+  .inspiration-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .trip-image {
-    height: 220px;
+    height: 210px;
+  }
+
+  .experience-grid {
+    grid-template-columns: 1fr;
   }
 
   .experience-card {
-    min-height: 460px;
+    min-height: 440px;
   }
 
   .gift-card-section {
+    margin: 0;
     grid-template-columns: 1fr;
-    gap: 30px;
-    padding: 50px 20px;
+    gap: 28px;
+    padding: 50px 24px 60px;
+  }
+
+  .gift-card-section > div:first-child {
+    text-align: center;
+  }
+
+  .gift-card-section h2 {
+    font-size: 32px;
   }
 
   .gift-card-images {
-    min-height: 310px;
+    min-height: 300px;
   }
 
   .gift-card-left {
-    left: 0;
+    left: 6%;
   }
 
   .gift-card-center {
-    left: 25%;
+    left: 32%;
   }
 
   .gift-card-right {
-    left: 48%;
+    left: 56%;
+  }
+
+  .hosting-section {
+    min-height: 500px;
+    margin: 35px 24px;
+    padding: 42px;
+  }
+
+  .hosting-section h2 {
+    font-size: 46px;
+  }
+
+  .future-getaways-section {
+    padding: 50px 24px 60px;
   }
 
   .getaway-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
+  }
+
+  .footer {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 40px 24px;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero-image {
+    min-height: 370px;
+    padding: 26px;
+  }
+
+  .hero-image h1 {
+    font-size: 28px;
+  }
+
+  .home-section h2,
+  .experiences-section h2 {
+    font-size: 28px;
+  }
+
+  .inspiration-grid {
+    gap: 16px;
+  }
+
+  .trip-image {
+    height: 180px;
+  }
+
+  .trip-content {
+    padding: 16px;
+  }
+
+  .trip-card h3 {
+    font-size: 20px;
+  }
+
+  .experience-card {
+    min-height: 390px;
+    padding: 34px;
+  }
+
+  .experience-card h3 {
+    font-size: 38px;
+  }
+
+  .gift-card-images {
+    min-height: 270px;
+  }
+
+  .gift-card {
+    width: 205px;
+    height: 120px;
+  }
+
+  .gift-airbnb-logo {
+    width: 54px;
+    height: 54px;
+  }
+
+  .hosting-section {
+    min-height: 430px;
+    padding: 34px;
+  }
+
+  .hosting-section h2 {
+    font-size: 38px;
+  }
+
+  .getaway-tabs {
+    gap: 22px;
   }
 }
 
@@ -399,17 +553,42 @@
     padding: 40px 20px;
   }
 
+  .hero-section {
+    padding: 0 16px 36px;
+  }
+
+  .hero-image {
+    min-height: 340px;
+    padding: 24px 18px;
+  }
+
+  .hero-image h1 {
+    font-size: 25px;
+  }
+
+  .inspiration-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trip-image {
+    height: 230px;
+  }
+
   .experience-card {
-    min-height: 390px;
-    padding: 32px;
+    min-height: 360px;
+    padding: 30px;
   }
 
   .experience-card h3 {
-    font-size: 38px;
+    font-size: 34px;
+  }
+
+  .gift-card-section {
+    padding: 40px 20px 50px;
   }
 
   .gift-card-images {
-    min-height: 520px;
+    min-height: 500px;
   }
 
   .gift-card {
@@ -429,26 +608,111 @@
   }
 
   .gift-card-center {
-    top: 185px;
+    top: 180px;
     transform: translateX(-50%) rotate(-8deg);
   }
 
   .gift-card-right {
-    top: 350px;
+    top: 340px;
     transform: translateX(-50%) rotate(8deg);
   }
 
   .hosting-section {
-    min-height: 460px;
+    min-height: 400px;
     margin: 30px 20px;
     padding: 30px;
   }
 
   .hosting-section h2 {
-    font-size: 36px;
+    font-size: 34px;
   }
 
   .getaway-grid {
     grid-template-columns: 1fr;
+  }
+
+  .footer {
+    grid-template-columns: 1fr;
+    padding: 36px 20px;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-section {
+    padding: 0 12px 32px;
+  }
+
+  .hero-image {
+    min-height: 310px;
+    border-radius: 8px;
+  }
+
+  .hero-button,
+  .hosting-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .home-section,
+  .experiences-section,
+  .future-getaways-section {
+    padding: 34px 16px;
+  }
+
+  .home-section h2,
+  .experiences-section h2 {
+    font-size: 24px;
+  }
+
+  .trip-image {
+    height: 200px;
+  }
+
+  .experience-card {
+    min-height: 330px;
+    padding: 24px;
+  }
+
+  .experience-card h3 {
+    font-size: 30px;
+  }
+
+  .gift-card-section {
+    padding: 34px 16px 46px;
+  }
+
+  .gift-card-section h2 {
+    font-size: 28px;
+  }
+
+  .gift-card-images {
+    min-height: 450px;
+  }
+
+  .gift-card {
+    width: 205px;
+    height: 120px;
+  }
+
+  .gift-card-center {
+    top: 160px;
+  }
+
+  .gift-card-right {
+    top: 300px;
+  }
+
+  .hosting-section {
+    min-height: 360px;
+    margin: 24px 16px;
+    padding: 24px;
+  }
+
+  .hosting-section h2 {
+    font-size: 30px;
+  }
+
+  .future-getaways-section h2 {
+    font-size: 22px;
   }
 }
