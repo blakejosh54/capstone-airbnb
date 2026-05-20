@@ -4,6 +4,7 @@ import HostNav from "../components/HostNav";
 import "../css/HostDashboard.css";
 
 function MyListings() {
+  // stores the host listings
   const [listings, setListings] = useState([]);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
@@ -12,6 +13,7 @@ function MyListings() {
 
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
+  // loads the logged in host listings
   async function fetchMyListings() {
     try {
       setLoading(true);
@@ -45,6 +47,7 @@ function MyListings() {
     }
   }
 
+  // deletes a listing
   async function handleDelete(id) {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this listing?",
@@ -120,6 +123,7 @@ function MyListings() {
                   }
                   alt={listing.title}
                   className="host-listing-image"
+                  loading="lazy"
                 />
 
                 <Link

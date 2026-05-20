@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import "../css/MyReservations.css";
 
 const MyReservations = () => {
+  // stores the user reservations
   const [reservations, setReservations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
 
+  // loads the user bookings
   useEffect(() => {
     const getMyReservations = async () => {
       const token = localStorage.getItem("token");
@@ -41,6 +43,7 @@ const MyReservations = () => {
     getMyReservations();
   }, []);
 
+  // cancels a booking
   const handleCancelReservation = async (reservationId) => {
     const token = localStorage.getItem("token");
 

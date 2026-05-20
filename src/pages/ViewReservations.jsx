@@ -2,18 +2,22 @@ import { useEffect, useState } from "react";
 import HostNav from "../components/HostNav";
 import "../css/HostDashboard.css";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 const ViewReservations = () => {
+  // stores reservations for the host listings
   const [reservations, setReservations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
 
+  // loads bookings made for the host stays
   useEffect(() => {
     const getHostReservations = async () => {
       const token = localStorage.getItem("token");
 
       try {
         const response = await fetch(
-          "http://localhost:5000/api/reservations/host-reservations",
+          `${API_URL}/api/reservations/host-reservations`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

@@ -14,6 +14,9 @@ import {
 } from "react-icons/fa";
 import superhostBadge from "../assets/superhost.svg";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
+// static reviews content
 const staticReviews = [
   {
     name: "Alison",
@@ -53,6 +56,7 @@ const staticReviews = [
   },
 ];
 
+// static amenities shown on the page
 const staticAmenities = [
   "Garden view",
   "Wifi",
@@ -73,14 +77,17 @@ const AccommodationDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  // main page data
   const [accommodation, setAccommodation] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // booking form values
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [guests, setGuests] = useState(1);
   const [message, setMessage] = useState("");
 
+  // date helper functions
   const getTodayDateString = () => {
     const today = new Date();
     const timezoneOffset = today.getTimezoneOffset() * 60000;
@@ -147,6 +154,7 @@ const AccommodationDetails = () => {
     return accommodation.location.split(",")[0];
   };
 
+  // builds the small calendar preview
   const getCalendarDays = (dateString) => {
     const baseDate = dateString ? new Date(dateString) : new Date();
 
@@ -180,6 +188,7 @@ const AccommodationDetails = () => {
     return date.getDate() === day;
   };
 
+  // picks the icon for each amenity
   const getAmenityIcon = (amenity) => {
     if (amenity === "Garden view") {
       return <FaLeaf />;
@@ -224,6 +233,7 @@ const AccommodationDetails = () => {
     return <i className="material-icons">check</i>;
   };
 
+  // booking totals
   const todayDate = getTodayDateString();
   const minimumCheckOutDate = getNextDayDateString(checkIn);
 
@@ -247,6 +257,7 @@ const AccommodationDetails = () => {
     accommodation?.host || "airbnb-host",
   )}`;
 
+  // handles booking form changes
   const handleCheckInChange = (event) => {
     const selectedCheckIn = event.target.value;
 
@@ -276,6 +287,7 @@ const AccommodationDetails = () => {
     setMessage("");
   };
 
+  // sends the reservation request
   const handleReserve = async () => {
     const token = localStorage.getItem("token");
 
@@ -310,7 +322,7 @@ const AccommodationDetails = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/reservations", {
+      const response = await fetch(`${API_URL}/api/reservations`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -342,12 +354,11 @@ const AccommodationDetails = () => {
     }
   };
 
+  // loads the accommodation
   useEffect(() => {
     const getAccommodation = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:5000/api/accommodations/${id}`,
-        );
+        const response = await fetch(`${API_URL}/api/accommodations/${id}`);
 
         const data = await response.json();
 
@@ -376,6 +387,7 @@ const AccommodationDetails = () => {
     return <p className="page-message">Accommodation not found.</p>;
   }
 
+  // the booking card
   const reservationCard = (
     <div className="booking-sidebar">
       <aside className="booking-card">
@@ -534,6 +546,7 @@ const AccommodationDetails = () => {
                 "https://placehold.co/500x300?text=Stay+Image"
               }
               alt="Accommodation"
+              loading="lazy"
             />
 
             <img
@@ -542,6 +555,7 @@ const AccommodationDetails = () => {
                 "https://placehold.co/500x300?text=Stay+Image"
               }
               alt="Accommodation"
+              loading="lazy"
             />
 
             <img
@@ -550,6 +564,7 @@ const AccommodationDetails = () => {
                 "https://placehold.co/500x300?text=Stay+Image"
               }
               alt="Accommodation"
+              loading="lazy"
             />
 
             <img
@@ -558,6 +573,7 @@ const AccommodationDetails = () => {
                 "https://placehold.co/500x300?text=Stay+Image"
               }
               alt="Accommodation"
+              loading="lazy"
             />
           </div>
         </section>
@@ -647,7 +663,7 @@ const AccommodationDetails = () => {
               <h2>Where you’ll sleep</h2>
 
               <div className="sleep-card">
-                <img src={bedroomImageUrl} alt="Bedroom" />
+                <img src={bedroomImageUrl} alt="Bedroom" loading="lazy" />
 
                 <p>Spacious bedroom with comfortable bed.</p>
                 <p>Total bedrooms: {accommodation.bedrooms}</p>
@@ -837,7 +853,11 @@ const AccommodationDetails = () => {
                     return (
                       <article className="review-card" key={review.name}>
                         <div className="review-person">
-                          <img src={review.image} alt={review.name} />
+                          <img
+                            src={review.image}
+                            alt={review.name}
+                            loading="lazy"
+                          />
                           <div>
                             <h3>{review.name}</h3>
                             <p>{review.date}</p>

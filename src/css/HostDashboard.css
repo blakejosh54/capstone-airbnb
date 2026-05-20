@@ -161,9 +161,10 @@
 }
 
 .host-listing-price {
+  align-self: stretch;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 
 .host-listing-price h3 {
@@ -388,10 +389,6 @@
   .host-listing-image {
     width: 250px;
     height: 180px;
-  }
-
-  .host-listing-price {
-    justify-content: flex-start;
   }
 
   .host-listing-price h3 {

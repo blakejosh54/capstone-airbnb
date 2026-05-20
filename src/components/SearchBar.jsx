@@ -2,12 +2,15 @@ import "../css/SearchBar.css";
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 const SearchBar = ({ variant = "hero" }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const searchBarRef = useRef(null);
   const [searchParams] = useSearchParams();
 
+  // keeps track of search values
   const [accommodations, setAccommodations] = useState([]);
   const [activeDropdown, setActiveDropdown] = useState("");
   const [searchText, setSearchText] = useState("");
@@ -27,6 +30,7 @@ const SearchBar = ({ variant = "hero" }) => {
   const isDetailsSearchBar =
     isNavbarVersion && /^\/accommodations\/[^/]+$/.test(location.pathname);
 
+  // date helpers
   const getTodayDateString = () => {
     const today = new Date();
     const timezoneOffset = today.getTimezoneOffset() * 60000;
@@ -93,6 +97,7 @@ const SearchBar = ({ variant = "hero" }) => {
   const todayDate = getTodayDateString();
   const minimumCheckOutDate = getNextDayDateString(checkIn);
 
+  // builds the location options
   const getLocationName = (locationValue) => {
     if (!locationValue) {
       return "";
@@ -113,6 +118,7 @@ const SearchBar = ({ variant = "hero" }) => {
     locationName.toLowerCase().startsWith(searchText.trim().toLowerCase()),
   );
 
+  // builds the search page url
   const buildSearchUrl = (filters = {}) => {
     const nextLocation =
       filters.location !== undefined ? filters.location : selectedLocation;
@@ -155,6 +161,7 @@ const SearchBar = ({ variant = "hero" }) => {
     return "/locations";
   };
 
+  // handles search actions
   const handleSearch = () => {
     navigate(buildSearchUrl());
     setActiveDropdown("");
@@ -190,6 +197,7 @@ const SearchBar = ({ variant = "hero" }) => {
     setActiveDropdown("");
   };
 
+  // handles date changes
   const handleCheckInChange = (event) => {
     const value = event.target.value;
 
@@ -207,6 +215,7 @@ const SearchBar = ({ variant = "hero" }) => {
     setCheckOut(event.target.value);
   };
 
+  // handles guest changes
   const increaseAdults = () => {
     setAdults(adults + 1);
   };
@@ -227,12 +236,11 @@ const SearchBar = ({ variant = "hero" }) => {
     }
   };
 
+  // loads locations for the dropdown
   useEffect(() => {
     const getAccommodations = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:5000/api/accommodations",
-        );
+        const response = await fetch(`${API_URL}/api/accommodations`);
         const data = await response.json();
 
         setAccommodations(data);
@@ -244,6 +252,7 @@ const SearchBar = ({ variant = "hero" }) => {
     getAccommodations();
   }, []);
 
+  // keeps the search bar in sync with the URL
   useEffect(() => {
     const urlCheckIn = searchParams.get("checkIn") || "";
     const urlCheckOut = searchParams.get("checkOut") || "";
@@ -255,6 +264,7 @@ const SearchBar = ({ variant = "hero" }) => {
     setChildren(Number(searchParams.get("children")) || 0);
   }, [location.search, searchParams, todayDate]);
 
+  // closes dropdowns when clicking away
   useEffect(() => {
     const closeDropdown = (event) => {
       if (

@@ -13,6 +13,7 @@ import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer";
 
 const App = () => {
+  // keeps logged in users away from auth pages
   const GuestRoute = ({ children }) => {
     const token = localStorage.getItem("token");
 
@@ -23,6 +24,7 @@ const App = () => {
     return children;
   };
 
+  // protects pages that need a logged in user
   const ProtectedRoute = ({ children }) => {
     const token = localStorage.getItem("token");
 

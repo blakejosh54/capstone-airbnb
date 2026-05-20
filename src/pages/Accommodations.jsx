@@ -1,24 +1,29 @@
 import "../css/Accommodations.css";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 const defaultAmenities = ["Wifi", "Kitchen", "Free parking"];
 
 const Accommodations = () => {
   const [searchParams] = useSearchParams();
 
+  // stores the listings and filter values
   const [accommodations, setAccommodations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedPrice, setSelectedPrice] = useState("");
   const [selectedType, setSelectedType] = useState("");
   const [selectedAmenities, setSelectedAmenities] = useState([]);
 
+  // reads search values from the URL
   const selectedLocation = searchParams.get("location") || "";
   const locationSearch = searchParams.get("search") || "";
   const adults = Number(searchParams.get("adults")) || 0;
   const children = Number(searchParams.get("children")) || 0;
   const guestCount = adults + children;
 
+  // formats listing details for display
   const getLocationName = (location) => {
     if (!location) {
       return "";
@@ -43,6 +48,7 @@ const Accommodations = () => {
     return defaultAmenities;
   };
 
+  // turns amenity filters on and off
   const toggleAmenity = (amenity) => {
     if (selectedAmenities.includes(amenity)) {
       setSelectedAmenities(
@@ -56,58 +62,68 @@ const Accommodations = () => {
     setSelectedAmenities([...selectedAmenities, amenity]);
   };
 
-  const filteredAccommodations = accommodations.filter((accommodation) => {
-    const accommodationLocation = getLocationName(accommodation.location);
-    const accommodationAmenities = getAmenityList(accommodation.amenities).map(
-      (amenity) => amenity.toLowerCase(),
-    );
+  // applies the selected filters
+  const filteredAccommodations = useMemo(() => {
+    return accommodations.filter((accommodation) => {
+      const accommodationLocation = getLocationName(accommodation.location);
+      const accommodationAmenities = getAmenityList(
+        accommodation.amenities,
+      ).map((amenity) => amenity.toLowerCase());
 
-    const matchesLocation = selectedLocation
-      ? accommodationLocation.toLowerCase() === selectedLocation.toLowerCase()
-      : true;
-    const matchesSearch = locationSearch
-      ? accommodationLocation
-          .toLowerCase()
-          .startsWith(locationSearch.trim().toLowerCase())
-      : true;
-    const matchesGuests =
-      guestCount > 0 ? accommodation.guests >= guestCount : true;
-    const matchesPrice =
-      selectedPrice === "under-1000"
-        ? accommodation.price < 1000
-        : selectedPrice === "1000-1500"
-          ? accommodation.price >= 1000 && accommodation.price <= 1500
-          : selectedPrice === "over-1500"
-            ? accommodation.price > 1500
-            : true;
-    const matchesType = selectedType
-      ? accommodation.type.toLowerCase() === selectedType.toLowerCase()
-      : true;
-    const matchesAmenities =
-      selectedAmenities.length > 0
-        ? selectedAmenities.every((amenity) =>
-            accommodationAmenities.includes(amenity.toLowerCase()),
-          )
+      const matchesLocation = selectedLocation
+        ? accommodationLocation.toLowerCase() === selectedLocation.toLowerCase()
         : true;
+      const matchesSearch = locationSearch
+        ? accommodationLocation
+            .toLowerCase()
+            .startsWith(locationSearch.trim().toLowerCase())
+        : true;
+      const matchesGuests =
+        guestCount > 0 ? accommodation.guests >= guestCount : true;
+      const matchesPrice =
+        selectedPrice === "under-1000"
+          ? accommodation.price < 1000
+          : selectedPrice === "1000-1500"
+            ? accommodation.price >= 1000 && accommodation.price <= 1500
+            : selectedPrice === "over-1500"
+              ? accommodation.price > 1500
+              : true;
+      const matchesType = selectedType
+        ? accommodation.type.toLowerCase() === selectedType.toLowerCase()
+        : true;
+      const matchesAmenities =
+        selectedAmenities.length > 0
+          ? selectedAmenities.every((amenity) =>
+              accommodationAmenities.includes(amenity.toLowerCase()),
+            )
+          : true;
 
-    return (
-      matchesLocation &&
-      matchesSearch &&
-      matchesGuests &&
-      matchesPrice &&
-      matchesType &&
-      matchesAmenities
-    );
-  });
+      return (
+        matchesLocation &&
+        matchesSearch &&
+        matchesGuests &&
+        matchesPrice &&
+        matchesType &&
+        matchesAmenities
+      );
+    });
+  }, [
+    accommodations,
+    selectedLocation,
+    locationSearch,
+    guestCount,
+    selectedPrice,
+    selectedType,
+    selectedAmenities,
+  ]);
 
   const hasLocationFilter = selectedLocation || locationSearch;
 
+  // loads all accommodations
   useEffect(() => {
     const getAccommodations = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:5000/api/accommodations",
-        );
+        const response = await fetch(`${API_URL}/api/accommodations`);
         const data = await response.json();
 
         setAccommodations(data);
@@ -215,6 +231,7 @@ const Accommodations = () => {
                   }
                   alt={accommodation.title}
                   className="accommodation-card-image"
+                  loading="lazy"
                 />
 
                 <div className="accommodation-card-info">

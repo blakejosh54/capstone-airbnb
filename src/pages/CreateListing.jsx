@@ -6,6 +6,7 @@ import "../css/HostDashboard.css";
 function CreateListing() {
   const navigate = useNavigate();
 
+  // keeps all the listing form values together
   const [formData, setFormData] = useState({
     title: "",
     price: "",
@@ -32,6 +33,7 @@ function CreateListing() {
 
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
+  // updates the form fields
   function handleChange(e) {
     const { name, value, type, checked } = e.target;
 
@@ -41,6 +43,7 @@ function CreateListing() {
     }));
   }
 
+  // adds an amenity to the list
   function addAmenity() {
     const cleanAmenity = formData.amenityInput.trim();
 
@@ -62,6 +65,7 @@ function CreateListing() {
     }));
   }
 
+  // adds an image from a URL
   function addImage() {
     const cleanImage = formData.imageInput.trim();
 
@@ -74,6 +78,7 @@ function CreateListing() {
     }));
   }
 
+  // uploads an image file
   async function uploadImage(e) {
     const file = e.target.files[0];
 
@@ -123,6 +128,7 @@ function CreateListing() {
     }));
   }
 
+  // creates the new listing
   async function handleSubmit(e) {
     e.preventDefault();
 

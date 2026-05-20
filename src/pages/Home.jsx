@@ -5,6 +5,7 @@ import SearchBar from "../components/SearchBar.jsx";
 import logo from "../assets/logo.svg";
 
 const Home = () => {
+  // controls the future getaways tabs
   const [activeGetawayTab, setActiveGetawayTab] = useState(0);
 
   return (
@@ -100,15 +101,30 @@ const Home = () => {
 
         <div className="gift-card-images">
           <div className="gift-card gift-card-left">
-            <img src={logo} alt="Airbnb" className="gift-airbnb-logo" />
+            <img
+              src={logo}
+              alt="Airbnb"
+              className="gift-airbnb-logo"
+              loading="lazy"
+            />
           </div>
 
           <div className="gift-card gift-card-center">
-            <img src={logo} alt="Airbnb" className="gift-airbnb-logo" />
+            <img
+              src={logo}
+              alt="Airbnb"
+              className="gift-airbnb-logo"
+              loading="lazy"
+            />
           </div>
 
           <div className="gift-card gift-card-right">
-            <img src={logo} alt="Airbnb" className="gift-airbnb-logo" />
+            <img
+              src={logo}
+              alt="Airbnb"
+              className="gift-airbnb-logo"
+              loading="lazy"
+            />
           </div>
         </div>
       </section>
@@ -155,6 +171,7 @@ const Home = () => {
   );
 };
 
+// content for the future getaways section
 const getawayTabs = [
   {
     name: "Destinations for arts and culture",

@@ -5,6 +5,7 @@ import { useState } from "react";
 const Login = () => {
   const navigate = useNavigate();
 
+  // keeps track of the login form
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -12,6 +13,7 @@ const Login = () => {
 
   const [message, setMessage] = useState("");
 
+  // updates the input values
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -19,6 +21,7 @@ const Login = () => {
     });
   };
 
+  // sends the login request
   const handleSubmit = async (e) => {
     e.preventDefault();
 

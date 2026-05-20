@@ -3,10 +3,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import HostNav from "../components/HostNav";
 import "../css/HostDashboard.css";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 function UpdateListing() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  // keeps all the listing form values together
   const [formData, setFormData] = useState({
     title: "",
     price: "",
@@ -32,8 +35,7 @@ function UpdateListing() {
   const [pageLoading, setPageLoading] = useState(true);
   const [uploadingImage, setUploadingImage] = useState(false);
 
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
-
+  // loads the listing being edited
   useEffect(() => {
     async function fetchListing() {
       try {
@@ -76,8 +78,9 @@ function UpdateListing() {
     }
 
     fetchListing();
-  }, [API_URL, id]);
+  }, [id]);
 
+  // updates the form fields
   function handleChange(e) {
     const { name, value, type, checked } = e.target;
 
@@ -87,6 +90,7 @@ function UpdateListing() {
     }));
   }
 
+  // adds an amenity to the list
   function addAmenity() {
     const cleanAmenity = formData.amenityInput.trim();
 
@@ -108,6 +112,7 @@ function UpdateListing() {
     }));
   }
 
+  // adds an image from a URL
   function addImage() {
     const cleanImage = formData.imageInput.trim();
 
@@ -120,6 +125,7 @@ function UpdateListing() {
     }));
   }
 
+  // uploads an image file
   async function uploadImage(e) {
     const file = e.target.files[0];
 
@@ -169,6 +175,7 @@ function UpdateListing() {
     }));
   }
 
+  // saves the updated listing
   async function handleSubmit(e) {
     e.preventDefault();
 
